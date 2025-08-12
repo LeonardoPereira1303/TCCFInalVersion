@@ -156,4 +156,10 @@ public class KitchenGameManager : MonoBehaviour
     {
         return state == State.Paused;
     }
+
+    public bool CanPlayersMove()
+    {
+        // Movimento só permitido quando estado é GamePlaying e a contagem regressiva já acabou
+        return state == State.GamePlaying;
+    }
 }

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
-    [SerializeField] private TrailRenderer trailRenderer; // Referência ao Trail Renderer
+    [SerializeField] private TrailRenderer trailRenderer; // Referï¿½ncia ao Trail Renderer
 
 
     [SerializeField] private float dashDistance = 5f;
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
         gameInput.OnDashAction += GameInput_OnDashAction;
         gameInput.OnPauseAction += GameInput_OnPauseAction;
-        // Certifique-se de que o Trail Renderer está desativado inicialmente
+        // Certifique-se de que o Trail Renderer estï¿½ desativado inicialmente
         if (trailRenderer != null)
         {
             trailRenderer.enabled = false;
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         TryInteractWithPortal();
 
-        
+
         if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         canDash = false;
         isDashing = true;
 
-        // Ativar o Trail Renderer no início do dash
+        // Ativar o Trail Renderer no inï¿½cio do dash
         if (trailRenderer != null)
         {
             trailRenderer.enabled = true;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             float dashStep = (dashDistance / dashTime) * Time.deltaTime;
             Vector3 nextPosition = transform.position + dashDirection * dashStep;
 
-            bool hit = Physics.CapsuleCast(transform.position,transform.position + Vector3.up * playerHeight, playerRadius,dashDirection,
+            bool hit = Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, dashDirection,
                 dashStep
             );
 
@@ -143,6 +143,13 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void Update()
     {
+
+        if (!KitchenGameManager.Instance.CanPlayersMove())
+        {
+            // Anula qualquer entrada enquanto nÃ£o puder mover
+            return;
+        }
+        
         HandleMovement();
         HandleInteractions();
     }
@@ -269,8 +276,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             if (hit.transform.TryGetComponent(out Portal portal))
             {
-            portal.TryInteractTeleport(this);
+                portal.TryInteractTeleport(this);
             }
         }
-    }   
+    }
 }
