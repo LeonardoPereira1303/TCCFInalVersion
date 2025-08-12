@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
-using TMPro;
 
 public class KitchenGameManager : MonoBehaviour
 {
@@ -17,7 +14,7 @@ public class KitchenGameManager : MonoBehaviour
         CountdownToStart,
         GamePlaying,
         GameOver,
-        Paused,
+        Paused
     }
 
     private State state;
@@ -28,7 +25,7 @@ public class KitchenGameManager : MonoBehaviour
     public float gamePlayingTimerMax = 120f;
 
     private bool tutorialCompleted = false;
-    private bool phaseTimeStarted = false; // Controle do início do tempo real da fase
+    private bool phaseTimeStarted = true;
 
     private void Awake()
     {
@@ -53,66 +50,30 @@ public class KitchenGameManager : MonoBehaviour
 
             case State.CountdownToStart:
                 countdownToStartTimer -= Time.deltaTime;
-                if (countdownToStartTimer < 0f)
+                if (countdownToStartTimer <= 0f)
                 {
-                    // garante valor não-negativo e notifica a UI da mudança de estado
                     countdownToStartTimer = 0f;
                     state = State.GamePlaying;
                     gamePlayingTimer = gamePlayingTimerMax;
-                    OnStateChanged?.Invoke(this, EventArgs.Empty); // <-- CORREÇÃO: notifica a UI para esconder o contador
-                }
-                break;
-
-            case State.GamePlaying:
-                if (!phaseTimeStarted) return; // Congela o tempo até a liberação
-                gamePlayingTimer -= Time.deltaTime;
-                if (gamePlayingTimer < 0f)
-                {
-                    state = State.GameOver;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
 
-            case State.GameOver:
+            case State.GamePlaying:
+                if (!phaseTimeStarted) return;
+                gamePlayingTimer -= Time.deltaTime;
+                if (gamePlayingTimer <= 0f)
+                {
+                    gamePlayingTimer = 0f;
+                    state = State.GameOver;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
+                }
                 break;
         }
     }
 
-    public bool IsGamePlaying()
-    {
-        return state == State.GamePlaying;
-    }
-
-    public bool IsCountdownToStartActive()
-    {
-        return state == State.CountdownToStart;
-    }
-
-    public float GetCountdownToStartTimer()
-    {
-        return countdownToStartTimer;
-    }
-
-    public bool IsGameOver()
-    {
-        return state == State.GameOver;
-    }
-
-    public float GetGamePlayingTimerNormalized()
-    {
-        return 1 - (gamePlayingTimer / gamePlayingTimerMax);
-    }
-
-    public void GoBackToMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    public void FreezePhaseTime() => phaseTimeStarted = false;
+    public void StartPhaseTime() => phaseTimeStarted = true;
 
     public void CompleteTutorial()
     {
@@ -120,21 +81,23 @@ public class KitchenGameManager : MonoBehaviour
         IsTutorialActive = false;
     }
 
-    public void StartPhaseTime()
+    public bool IsGamePlaying() => state == State.GamePlaying;
+    public bool IsCountdownToStartActive() => state == State.CountdownToStart;
+    public float GetCountdownToStartTimer() => countdownToStartTimer;
+    public bool IsGameOver() => state == State.GameOver;
+    public float GetGamePlayingTimerNormalized() => 1 - (gamePlayingTimer / gamePlayingTimerMax);
+
+    public void GoBackToMainMenu() => SceneManager.LoadScene("MainMenu");
+    public void RestartGame()
     {
-        phaseTimeStarted = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void TogglePauseGame()
     {
-        if (state == State.Paused)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
+        if (state == State.Paused) ResumeGame();
+        else PauseGame();
     }
 
     private void PauseGame()
@@ -152,14 +115,12 @@ public class KitchenGameManager : MonoBehaviour
         OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public bool IsGamePaused()
-    {
-        return state == State.Paused;
-    }
+    public bool IsGamePaused() => state == State.Paused;
 
     public bool CanPlayersMove()
     {
-        // Movimento só permitido quando estado é GamePlaying e a contagem regressiva já acabou
+        // Jogadores só podem se mover se o estado é GamePlaying
+        // Não importa se o timer da fase está congelado — ainda podem se mover nesse caso
         return state == State.GamePlaying;
     }
 }

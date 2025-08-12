@@ -1,47 +1,84 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
+    [Serializable]
+    public class PhaseConfig
+    {
+        public string phaseName;
+        public List<RecipeSO> availableRecipes;
+        public RecipeSO firstRecipe;
+        public bool freezeTimerOnFirstRecipe; // Se true, congela o timer até o primeiro pedido ser entregue
+    }
+
+    public static DeliveryManager Instance { get; private set; }
+
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
     public event EventHandler OnRecipeSucess;
     public event EventHandler OnRecipeFailed;
 
-    public static DeliveryManager Instance { get; private set; }
+    [Header("Configuração de Fases")]
+    [SerializeField] private List<PhaseConfig> phasesConfig;
+    [SerializeField] private string currentPhaseName;
 
-    [Header("Receitas")]
-    [SerializeField] private RecipeListSO recipeListSO;
-    [SerializeField] private RecipeSO firstTutorialRecipeSO; // Pedido inicial obrigatório
-
-    private List<RecipeSO> waitingRecipeSOList;
-
+    private List<RecipeSO> waitingRecipeSOList = new List<RecipeSO>();
     private float spawnRecipeTimer;
-    private float spawnRecipeTimerMax = 4f;
-    private int waitingRecipesMax = 4;
+    [SerializeField] private float spawnRecipeTimerMax = 4f;
+    [SerializeField] private int waitingRecipesMax = 4;
     private int successfulRecipesAmount;
 
-    private bool firstRecipeDelivered = false; // Controle do primeiro pedido entregue
+    private bool firstRecipeDelivered = false;
+    private PhaseConfig currentPhase;
 
     private void Awake()
     {
         Instance = this;
-        waitingRecipeSOList = new List<RecipeSO>();
     }
 
     private void Start()
     {
-        // Gera apenas o primeiro pedido no início
-        waitingRecipeSOList.Add(firstTutorialRecipeSO);
-        OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+        spawnRecipeTimer = spawnRecipeTimerMax;
+        SetPhase(currentPhaseName);
+    }
+
+    public void SetPhase(string phaseName)
+    {
+        currentPhaseName = phaseName;
+        currentPhase = phasesConfig.Find(p => p.phaseName == phaseName);
+
+        waitingRecipeSOList.Clear();
+        firstRecipeDelivered = false;
+
+        if (currentPhase != null)
+        {
+            // Sempre começa com o primeiro pedido
+            if (currentPhase.firstRecipe != null)
+            {
+                waitingRecipeSOList.Add(currentPhase.firstRecipe);
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+            }
+
+            // Se a fase congela o timer até o primeiro pedido ser entregue
+            if (currentPhase.freezeTimerOnFirstRecipe)
+                KitchenGameManager.Instance.FreezePhaseTime();
+            else
+                KitchenGameManager.Instance.StartPhaseTime();
+        }
+        else
+        {
+            Debug.LogWarning($"Fase '{phaseName}' não encontrada na configuração do DeliveryManager!");
+        }
     }
 
     private void Update()
     {
-        // Bloqueia spawn se o tutorial estiver ativo ou o primeiro pedido não foi entregue
-        if (KitchenGameManager.Instance.IsTutorialActive || !firstRecipeDelivered)
+        if (currentPhase == null) return;
+
+        // Se a fase congela spawns até o primeiro pedido ser entregue
+        if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered)
             return;
 
         spawnRecipeTimer -= Time.deltaTime;
@@ -49,10 +86,10 @@ public class DeliveryManager : MonoBehaviour
         {
             spawnRecipeTimer = spawnRecipeTimerMax;
 
-            if (waitingRecipeSOList.Count < waitingRecipesMax)
+            if (waitingRecipeSOList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
             {
-                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
-                waitingRecipeSOList.Add(waitingRecipeSO);
+                RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
+                waitingRecipeSOList.Add(recipe);
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -66,25 +103,23 @@ public class DeliveryManager : MonoBehaviour
 
             if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
             {
-                bool plateContentsMatchesRecipe = true;
-                foreach (KitchenObjectSO recipeKitchenObjectSO in waitingRecipeSO.kitchenObjectSOList)
+                bool matches = true;
+
+                foreach (KitchenObjectSO recipeIngredient in waitingRecipeSO.kitchenObjectSOList)
                 {
-                    bool ingredientFound = false;
-                    foreach (KitchenObjectSO plateKitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList())
+                    bool found = false;
+                    foreach (KitchenObjectSO plateIngredient in plateKitchenObject.GetKitchenObjectSOList())
                     {
-                        if (plateKitchenObjectSO == recipeKitchenObjectSO)
+                        if (plateIngredient == recipeIngredient)
                         {
-                            ingredientFound = true;
+                            found = true;
                             break;
                         }
                     }
-                    if (!ingredientFound)
-                    {
-                        plateContentsMatchesRecipe = false;
-                    }
+                    if (!found) { matches = false; break; }
                 }
 
-                if (plateContentsMatchesRecipe)
+                if (matches)
                 {
                     successfulRecipesAmount++;
                     waitingRecipeSOList.RemoveAt(i);
@@ -92,13 +127,13 @@ public class DeliveryManager : MonoBehaviour
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSucess?.Invoke(this, EventArgs.Empty);
 
-                    // Marca o primeiro pedido como entregue e libera o tempo da fase
-                    if (!firstRecipeDelivered && waitingRecipeSO == firstTutorialRecipeSO)
+                    // Se for o primeiro pedido de uma fase que congela timer, libera o tempo
+                    if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered &&
+                        waitingRecipeSO == currentPhase.firstRecipe)
                     {
                         firstRecipeDelivered = true;
                         KitchenGameManager.Instance.StartPhaseTime();
                     }
-
                     return;
                 }
             }
@@ -107,13 +142,6 @@ public class DeliveryManager : MonoBehaviour
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
     }
 
-    public List<RecipeSO> GetWaitingRecipeSOList()
-    {
-        return waitingRecipeSOList;
-    }
-
-    public int GetSuccessfulRecipesAmount()
-    {
-        return successfulRecipesAmount;
-    }
+    public List<RecipeSO> GetWaitingRecipeSOList() => waitingRecipeSOList;
+    public int GetSuccessfulRecipesAmount() => successfulRecipesAmount;
 }
