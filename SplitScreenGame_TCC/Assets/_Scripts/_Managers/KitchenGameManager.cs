@@ -10,24 +10,25 @@ public class KitchenGameManager : MonoBehaviour
     public static KitchenGameManager Instance { get; private set; }
     public event EventHandler OnStateChanged;
     public bool IsTutorialActive { get; private set; } = true;
-    
+
     private enum State
     {
         WaitingToStart,
         CountdownToStart,
         GamePlaying,
         GameOver,
-        Paused, // Novo estado para pausa
+        Paused,
     }
 
     private State state;
-    private State previousState; // Guarda o estado anterior para retomada
+    private State previousState;
     private float waitingToStartTimer = 1f;
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
     public float gamePlayingTimerMax = 120f;
 
-    private bool tutorialCompleted = false; // Para controlar quando o tutorial terminou
+    private bool tutorialCompleted = false;
+    private bool phaseTimeStarted = false; // Controle do início do tempo real da fase
 
     private void Awake()
     {
@@ -37,14 +38,13 @@ public class KitchenGameManager : MonoBehaviour
 
     private void Update()
     {
-        // Se o jogo estiver pausado, não processa as contagens
         if (state == State.Paused) return;
 
         switch (state)
         {
             case State.WaitingToStart:
                 waitingToStartTimer -= Time.deltaTime;
-                if (waitingToStartTimer < 0f && tutorialCompleted) // Só mudar de estado se o tutorial tiver terminado
+                if (waitingToStartTimer < 0f && tutorialCompleted)
                 {
                     state = State.CountdownToStart;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
@@ -55,13 +55,16 @@ public class KitchenGameManager : MonoBehaviour
                 countdownToStartTimer -= Time.deltaTime;
                 if (countdownToStartTimer < 0f)
                 {
+                    // garante valor não-negativo e notifica a UI da mudança de estado
+                    countdownToStartTimer = 0f;
                     state = State.GamePlaying;
                     gamePlayingTimer = gamePlayingTimerMax;
-                    OnStateChanged?.Invoke(this, EventArgs.Empty);
+                    OnStateChanged?.Invoke(this, EventArgs.Empty); // <-- CORREÇÃO: notifica a UI para esconder o contador
                 }
                 break;
 
             case State.GamePlaying:
+                if (!phaseTimeStarted) return; // Congela o tempo até a liberação
                 gamePlayingTimer -= Time.deltaTime;
                 if (gamePlayingTimer < 0f)
                 {
@@ -111,11 +114,15 @@ public class KitchenGameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // Método para sinalizar que o tutorial foi concluído
     public void CompleteTutorial()
     {
         tutorialCompleted = true;
         IsTutorialActive = false;
+    }
+
+    public void StartPhaseTime()
+    {
+        phaseTimeStarted = true;
     }
 
     public void TogglePauseGame()
@@ -132,16 +139,16 @@ public class KitchenGameManager : MonoBehaviour
 
     private void PauseGame()
     {
-        previousState = state;  // Armazena o estado atual antes de pausar
+        previousState = state;
         state = State.Paused;
-        Time.timeScale = 0f; // Pausa o tempo do jogo
+        Time.timeScale = 0f;
         OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void ResumeGame()
     {
-        state = previousState;  // Restaura o estado anteriormente pausado
-        Time.timeScale = 1f; // Retoma o tempo do jogo
+        state = previousState;
+        Time.timeScale = 1f;
         OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 

@@ -17,14 +17,12 @@ public class TutorialManager : MonoBehaviour
     {
         StartCoroutine(ShowFirstPopUpWithDelay());
 
-        // Assinar eventos de input para o "Interact" de ambos os dispositivos
         keyboardInput.OnInteractAction += OnInteractInput;
         gamepadInput.OnInteractAction += OnInteractInput;
     }
 
     private void OnDestroy()
     {
-        // Remover assinaturas de eventos para evitar memory leaks
         keyboardInput.OnInteractAction -= OnInteractInput;
         gamepadInput.OnInteractAction -= OnInteractInput;
     }
@@ -54,7 +52,6 @@ public class TutorialManager : MonoBehaviour
         else
         {
             HideAllPopUps();
-            // Notifica o KitchenGameManager que o tutorial foi concluído
             KitchenGameManager.Instance.CompleteTutorial();
         }
     }
