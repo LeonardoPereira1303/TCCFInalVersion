@@ -33,6 +33,28 @@ public class KitchenGameManager : MonoBehaviour
         state = State.WaitingToStart;
     }
 
+    private void Start()
+    {
+        if (ScoreManager.Instance != null)
+        {
+            // Log de pontuação
+            ScoreManager.Instance.OnScoreChanged += (sender, args) =>
+            {
+                Debug.Log($"[KitchenGameManager] Pontos: {ScoreManager.Instance.GetScore()} / {ScoreManager.Instance.GetScoreGoal()}");
+            };
+
+            // Ao atingir o objetivo
+            ScoreManager.Instance.OnGoalReached += (sender, args) =>
+            {
+                Debug.Log("[KitchenGameManager] Objetivo de pontos atingido! Encerrando a fase...");
+                state = State.GameOver;
+                OnStateChanged?.Invoke(this, EventArgs.Empty);
+            };
+        }
+    }
+
+
+
     private void Update()
     {
         if (state == State.Paused) return;

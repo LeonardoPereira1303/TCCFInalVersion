@@ -124,6 +124,9 @@ public class DeliveryManager : MonoBehaviour
                     successfulRecipesAmount++;
                     waitingRecipeSOList.RemoveAt(i);
 
+                    ScoreManager.Instance?.AddScore(10); // <-- Aqui definimos pontos por entrega correta
+
+
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSucess?.Invoke(this, EventArgs.Empty);
 
