@@ -7601,8 +7601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Obrigado por jogarem esse prototipo. Fiquem a vontade para jogarem e rejogarem
-    quantas vezes acharem necessaria.
+  m_text: "Derrota!\nJogue novamente ou v\xE1 para o menu principal"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c45901d1058bb348866c141b9cce8a6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6c94fc26464d57840983096f9440e582, type: 2}
