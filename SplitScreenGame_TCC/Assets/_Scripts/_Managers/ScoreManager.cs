@@ -26,11 +26,11 @@ public class ScoreManager : MonoBehaviour
         currentScore += amount;
         OnScoreChanged?.Invoke(this, EventArgs.Empty);
 
-        Debug.Log($"[ScoreManager] Pontos atuais: {currentScore}");
+        //Debug.Log($"[ScoreManager] Pontos atuais: {currentScore}");
 
         if (currentScore >= scoreGoal)
         {
-            Debug.Log("[ScoreManager] Objetivo de pontos alcançado!");
+            //Debug.Log("[ScoreManager] Objetivo de pontos alcançado!");
             OnGoalReached?.Invoke(this, EventArgs.Empty);
         }
     }

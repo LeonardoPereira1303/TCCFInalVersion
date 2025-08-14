@@ -40,7 +40,7 @@ public class KitchenGameManager : MonoBehaviour
             // Log de pontuação
             ScoreManager.Instance.OnScoreChanged += (sender, args) =>
             {
-                Debug.Log($"[KitchenGameManager] Pontos: {ScoreManager.Instance.GetScore()} / {ScoreManager.Instance.GetScoreGoal()}");
+                //Debug.Log($"[KitchenGameManager] Pontos: {ScoreManager.Instance.GetScore()} / {ScoreManager.Instance.GetScoreGoal()}");
             };
 
             // Ao atingir o objetivo
