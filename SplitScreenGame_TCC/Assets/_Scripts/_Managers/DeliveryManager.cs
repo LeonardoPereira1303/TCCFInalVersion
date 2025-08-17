@@ -10,7 +10,18 @@ public class DeliveryManager : MonoBehaviour
         public string phaseName;
         public List<RecipeSO> availableRecipes;
         public RecipeSO firstRecipe;
-        public bool freezeTimerOnFirstRecipe; // Se true, congela o timer até o primeiro pedido ser entregue
+        public bool freezeTimerOnFirstRecipe; 
+    }
+
+    [Serializable]
+    public class WaitingRecipe {
+        public RecipeSO recipeSO;
+        public float timer;
+
+        public WaitingRecipe(RecipeSO recipeSO, float timer) {
+            this.recipeSO = recipeSO;
+            this.timer = timer;
+        }
     }
 
     public static DeliveryManager Instance { get; private set; }
@@ -24,12 +35,14 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private List<PhaseConfig> phasesConfig;
     [SerializeField] private string currentPhaseName;
 
-    private List<RecipeSO> waitingRecipeSOList = new List<RecipeSO>();
-    private float spawnRecipeTimer;
+    [Header("Configuração de Pedidos")]
     [SerializeField] private float spawnRecipeTimerMax = 4f;
     [SerializeField] private int waitingRecipesMax = 4;
-    private int successfulRecipesAmount;
+    [SerializeField] private float recipeMaxTime = 15f; // tempo limite de cada pedido
 
+    private List<WaitingRecipe> waitingRecipeList = new List<WaitingRecipe>();
+    private float spawnRecipeTimer;
+    private int successfulRecipesAmount;
     private bool firstRecipeDelivered = false;
     private PhaseConfig currentPhase;
 
@@ -49,19 +62,17 @@ public class DeliveryManager : MonoBehaviour
         currentPhaseName = phaseName;
         currentPhase = phasesConfig.Find(p => p.phaseName == phaseName);
 
-        waitingRecipeSOList.Clear();
+        waitingRecipeList.Clear();
         firstRecipeDelivered = false;
 
         if (currentPhase != null)
         {
-            // Sempre começa com o primeiro pedido
             if (currentPhase.firstRecipe != null)
             {
-                waitingRecipeSOList.Add(currentPhase.firstRecipe);
+                waitingRecipeList.Add(new WaitingRecipe(currentPhase.firstRecipe, recipeMaxTime));
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
 
-            // Se a fase congela o timer até o primeiro pedido ser entregue
             if (currentPhase.freezeTimerOnFirstRecipe)
                 KitchenGameManager.Instance.FreezePhaseTime();
             else
@@ -77,19 +88,28 @@ public class DeliveryManager : MonoBehaviour
     {
         if (currentPhase == null) return;
 
-        // Se a fase congela spawns até o primeiro pedido ser entregue
         if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered)
             return;
 
+        // Atualiza timers dos pedidos
+        for (int i = waitingRecipeList.Count - 1; i >= 0; i--) {
+            waitingRecipeList[i].timer -= Time.deltaTime;
+            if (waitingRecipeList[i].timer <= 0f) {
+                waitingRecipeList.RemoveAt(i);
+                OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+                OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        // Spawning normal
         spawnRecipeTimer -= Time.deltaTime;
-        if (spawnRecipeTimer <= 0f)
-        {
+        if (spawnRecipeTimer <= 0f) {
             spawnRecipeTimer = spawnRecipeTimerMax;
 
-            if (waitingRecipeSOList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
+            if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
             {
                 RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
-                waitingRecipeSOList.Add(recipe);
+                waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -97,9 +117,10 @@ public class DeliveryManager : MonoBehaviour
 
     public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
     {
-        for (int i = 0; i < waitingRecipeSOList.Count; i++)
+        for (int i = 0; i < waitingRecipeList.Count; i++)
         {
-            RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
+            WaitingRecipe waitingRecipe = waitingRecipeList[i];
+            RecipeSO waitingRecipeSO = waitingRecipe.recipeSO;
 
             if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
             {
@@ -122,15 +143,13 @@ public class DeliveryManager : MonoBehaviour
                 if (matches)
                 {
                     successfulRecipesAmount++;
-                    waitingRecipeSOList.RemoveAt(i);
+                    waitingRecipeList.RemoveAt(i);
 
-                    ScoreManager.Instance?.AddScore(10); // <-- Aqui definimos pontos por entrega correta
-
+                    ScoreManager.Instance?.AddScore(10);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSucess?.Invoke(this, EventArgs.Empty);
 
-                    // Se for o primeiro pedido de uma fase que congela timer, libera o tempo
                     if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered &&
                         waitingRecipeSO == currentPhase.firstRecipe)
                     {
@@ -145,6 +164,7 @@ public class DeliveryManager : MonoBehaviour
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
     }
 
-    public List<RecipeSO> GetWaitingRecipeSOList() => waitingRecipeSOList;
+    public List<WaitingRecipe> GetWaitingRecipeList() => waitingRecipeList;
     public int GetSuccessfulRecipesAmount() => successfulRecipesAmount;
+    public float GetRecipeMaxTime() => recipeMaxTime;
 }
