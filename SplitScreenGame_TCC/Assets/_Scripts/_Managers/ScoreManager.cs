@@ -24,13 +24,15 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         currentScore += amount;
-        OnScoreChanged?.Invoke(this, EventArgs.Empty);
 
-        //Debug.Log($"[ScoreManager] Pontos atuais: {currentScore}");
+        // Nunca deixar pontuação negativa
+        if (currentScore < 0)
+            currentScore = 0;
+
+        OnScoreChanged?.Invoke(this, EventArgs.Empty);
 
         if (currentScore >= scoreGoal)
         {
-            //Debug.Log("[ScoreManager] Objetivo de pontos alcançado!");
             OnGoalReached?.Invoke(this, EventArgs.Empty);
         }
     }

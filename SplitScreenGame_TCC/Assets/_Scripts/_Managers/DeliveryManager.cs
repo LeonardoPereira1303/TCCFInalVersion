@@ -39,6 +39,7 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private float spawnRecipeTimerMax = 4f;
     [SerializeField] private int waitingRecipesMax = 4;
     [SerializeField] private float recipeMaxTime = 15f; // tempo limite de cada pedido
+    [SerializeField] private int penaltyOnExpire = -5;   // pontos perdidos ao expirar
 
     private List<WaitingRecipe> waitingRecipeList = new List<WaitingRecipe>();
     private float spawnRecipeTimer;
@@ -95,9 +96,16 @@ public class DeliveryManager : MonoBehaviour
         for (int i = waitingRecipeList.Count - 1; i >= 0; i--) {
             waitingRecipeList[i].timer -= Time.deltaTime;
             if (waitingRecipeList[i].timer <= 0f) {
+                RecipeSO expiredRecipe = waitingRecipeList[i].recipeSO;
                 waitingRecipeList.RemoveAt(i);
+
+                // Penalidade de pontos
+                ScoreManager.Instance?.AddScore(penaltyOnExpire);
+
                 OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                 OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+
+                //Debug.Log($"[DeliveryManager] Pedido expirado: {expiredRecipe.recipeName}. Penalidade aplicada ({penaltyOnExpire}).");
             }
         }
 
@@ -111,6 +119,8 @@ public class DeliveryManager : MonoBehaviour
                 RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
                 waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
                 OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+
+                //Debug.Log($"[DeliveryManager] Novo pedido gerado: {recipe.recipeName}");
             }
         }
     }
