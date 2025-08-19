@@ -20804,10 +20804,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 848b38ff69c27914fbde190960c91395, type: 2}
     firstRecipe: {fileID: 11400000, guid: b632c322b1d6d3342899a21dac75bc8c, type: 2}
     freezeTimerOnFirstRecipe: 1
+    spawnInterval: 8
   currentPhaseName: Fase_Tutorial
-  spawnRecipeTimerMax: 1
   waitingRecipesMax: 4
   recipeMaxTime: 50
+  penaltyOnExpire: -5
 --- !u!4 &1889860506
 Transform:
   m_ObjectHideFlags: 0

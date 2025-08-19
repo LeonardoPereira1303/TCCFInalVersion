@@ -11,6 +11,7 @@ public class DeliveryManager : MonoBehaviour
         public List<RecipeSO> availableRecipes;
         public RecipeSO firstRecipe;
         public bool freezeTimerOnFirstRecipe; 
+        public float spawnInterval = 8f; // intervalo normal de spawn para pedidos 3+
     }
 
     [Serializable]
@@ -36,15 +37,15 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private string currentPhaseName;
 
     [Header("Configuração de Pedidos")]
-    [SerializeField] private float spawnRecipeTimerMax = 4f;
     [SerializeField] private int waitingRecipesMax = 4;
-    [SerializeField] private float recipeMaxTime = 15f; // tempo limite de cada pedido
-    [SerializeField] private int penaltyOnExpire = -5;   // pontos perdidos ao expirar
+    [SerializeField] private float recipeMaxTime = 15f; 
+    [SerializeField] private int penaltyOnExpire = -5;
 
     private List<WaitingRecipe> waitingRecipeList = new List<WaitingRecipe>();
     private float spawnRecipeTimer;
     private int successfulRecipesAmount;
     private bool firstRecipeDelivered = false;
+    private bool secondRecipeSpawned = false; // <- novo controle
     private PhaseConfig currentPhase;
 
     private void Awake()
@@ -54,7 +55,6 @@ public class DeliveryManager : MonoBehaviour
 
     private void Start()
     {
-        spawnRecipeTimer = spawnRecipeTimerMax;
         SetPhase(currentPhaseName);
     }
 
@@ -65,6 +65,7 @@ public class DeliveryManager : MonoBehaviour
 
         waitingRecipeList.Clear();
         firstRecipeDelivered = false;
+        secondRecipeSpawned = false;
 
         if (currentPhase != null)
         {
@@ -78,6 +79,8 @@ public class DeliveryManager : MonoBehaviour
                 KitchenGameManager.Instance.FreezePhaseTime();
             else
                 KitchenGameManager.Instance.StartPhaseTime();
+
+            spawnRecipeTimer = currentPhase.spawnInterval;
         }
         else
         {
@@ -88,39 +91,38 @@ public class DeliveryManager : MonoBehaviour
     private void Update()
     {
         if (currentPhase == null) return;
+        if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered) return;
 
-        if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered)
-            return;
-
-        // Atualiza timers dos pedidos
+        // Atualiza timers dos pedidos existentes
         for (int i = waitingRecipeList.Count - 1; i >= 0; i--) {
             waitingRecipeList[i].timer -= Time.deltaTime;
             if (waitingRecipeList[i].timer <= 0f) {
                 RecipeSO expiredRecipe = waitingRecipeList[i].recipeSO;
                 waitingRecipeList.RemoveAt(i);
 
-                // Penalidade de pontos
                 ScoreManager.Instance?.AddScore(penaltyOnExpire);
 
                 OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                 OnRecipeFailed?.Invoke(this, EventArgs.Empty);
 
-                //Debug.Log($"[DeliveryManager] Pedido expirado: {expiredRecipe.recipeName}. Penalidade aplicada ({penaltyOnExpire}).");
+                Debug.Log($"[DeliveryManager] Pedido expirado: {expiredRecipe.recipeName}. Penalidade {penaltyOnExpire}");
             }
         }
 
-        // Spawning normal
-        spawnRecipeTimer -= Time.deltaTime;
-        if (spawnRecipeTimer <= 0f) {
-            spawnRecipeTimer = spawnRecipeTimerMax;
+        // Só usa o timer a partir do 3º pedido
+        if (secondRecipeSpawned)
+        {
+            spawnRecipeTimer -= Time.deltaTime;
+            if (spawnRecipeTimer <= 0f) {
+                spawnRecipeTimer = currentPhase.spawnInterval;
 
-            if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
-            {
-                RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
-                waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
-                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+                if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0) {
+                    RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
+                    waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
+                    OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
 
-                //Debug.Log($"[DeliveryManager] Novo pedido gerado: {recipe.recipeName}");
+                    Debug.Log($"[DeliveryManager] Novo pedido gerado (3+): {recipe.recipeName}");
+                }
             }
         }
     }
@@ -141,11 +143,7 @@ public class DeliveryManager : MonoBehaviour
                     bool found = false;
                     foreach (KitchenObjectSO plateIngredient in plateKitchenObject.GetKitchenObjectSOList())
                     {
-                        if (plateIngredient == recipeIngredient)
-                        {
-                            found = true;
-                            break;
-                        }
+                        if (plateIngredient == recipeIngredient) { found = true; break; }
                     }
                     if (!found) { matches = false; break; }
                 }
@@ -160,12 +158,28 @@ public class DeliveryManager : MonoBehaviour
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSucess?.Invoke(this, EventArgs.Empty);
 
+                    // Liberar tempo da fase (se necessário)
                     if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered &&
                         waitingRecipeSO == currentPhase.firstRecipe)
                     {
                         firstRecipeDelivered = true;
                         KitchenGameManager.Instance.StartPhaseTime();
                     }
+
+                    // Gerar o 2º pedido imediatamente
+                    if (!secondRecipeSpawned)
+                    {
+                        if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
+                        {
+                            RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
+                            waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
+                            OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+                            Debug.Log($"[DeliveryManager] Segundo pedido gerado imediatamente: {recipe.recipeName}");
+                        }
+                        secondRecipeSpawned = true;
+                        spawnRecipeTimer = currentPhase.spawnInterval; // prepara timer para os próximos
+                    }
+
                     return;
                 }
             }
