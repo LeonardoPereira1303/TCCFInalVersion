@@ -3567,8 +3567,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853166507}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+      - m_Target: {fileID: 1454848386}
+        m_TargetAssemblyTypeName: MenuLoader, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -5337,20 +5337,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853166507}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: StartNewGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1454848386}
-        m_TargetAssemblyTypeName: AsyncLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: MenuLoader, Assembly-CSharp
         m_MethodName: LoadLevelButton
         m_Mode: 5
         m_Arguments:
@@ -7557,6 +7545,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 267032682}
   mainMenu: {fileID: 1601364021}
   loadingSlider: {fileID: 2123706623}
+  fakeLoadTime: 9
 --- !u!4 &1454848387
 Transform:
   m_ObjectHideFlags: 0
@@ -9096,19 +9085,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1836749018}
-        m_TargetAssemblyTypeName: ChristinaCreatesGames.UI.SetsUiElementToSelectOnInteraction,
-          Assembly-CSharp
-        m_MethodName: JumpToElement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1836749016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9266,7 +9242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8577e5e700e23664481b3ca518661372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newGameLevel: Tutorial_Controls
   volumeTextValue: {fileID: 1441127261}
   volumeSlider: {fileID: 1669214165}
   defaultVolume: 1
@@ -11066,22 +11041,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1454848385}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &2123706624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11168,7 +11131,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

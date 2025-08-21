@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MenuController : MonoBehaviour
+public class SettingsController : MonoBehaviour
 {
-    [Header("Level Selection")]
-    public string _newGameLevel;
-
     [Header("Volume Settings")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
@@ -23,7 +19,6 @@ public class MenuController : MonoBehaviour
     [Space(10)]
     [SerializeField] private Toggle fullScreenToggle;
 
-
     [SerializeField] private GameObject confirmationPrompt = null;
 
     private void Start() 
@@ -32,15 +27,14 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
-
         int currentResolutionIndex = 0;
 
-        for(int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 currentResolutionIndex = i;
             }
@@ -57,29 +51,19 @@ public class MenuController : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void StartNewGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(_newGameLevel);
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
-        volumeTextValue.text = volume.ToString("0.0");
+        if (volumeTextValue != null)
+            volumeTextValue.text = volume.ToString("0.0");
     }
 
-    public void SetFullScreen (bool isFullScreen)
+    public void SetFullScreen(bool isFullScreen)
     {
         _isFullScreen = isFullScreen;
     }
 
-    void GraphicsApply()
+    public void GraphicsApply()
     {
         Screen.fullScreen = _isFullScreen;
         PlayerPrefs.SetInt("fullscreen", _isFullScreen ? 1 : 0);
@@ -94,21 +78,26 @@ public class MenuController : MonoBehaviour
 
     public void ResetButton()
     {
+        // Volume
         AudioListener.volume = defaultVolume;
-        volumeSlider.value = defaultVolume;
-        volumeTextValue.text = defaultVolume.ToString("0.0");
+        if (volumeSlider != null)
+            volumeSlider.value = defaultVolume;
+        if (volumeTextValue != null)
+            volumeTextValue.text = defaultVolume.ToString("0.0");
         VolumeApply();
 
+        // Tela cheia
         fullScreenToggle.isOn = false;
         Screen.fullScreen = false;
 
+        // Resolução
         Resolution currentResolution = Screen.currentResolution;
         Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
-        resolutionDropdown.value = resolutions.Length;
+        resolutionDropdown.value = resolutions.Length - 1;
         GraphicsApply();
     }
 
-    public IEnumerator ConfirmationBox()
+    private IEnumerator ConfirmationBox()
     {
         confirmationPrompt.SetActive(true);
         yield return new WaitForSeconds(2f);
