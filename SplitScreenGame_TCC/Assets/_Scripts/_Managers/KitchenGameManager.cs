@@ -145,4 +145,9 @@ public class KitchenGameManager : MonoBehaviour
         // Não importa se o timer da fase está congelado — ainda podem se mover nesse caso
         return state == State.GamePlaying;
     }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("Fase_1");
+    }
 }
