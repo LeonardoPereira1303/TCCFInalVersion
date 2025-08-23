@@ -22,8 +22,7 @@ public class ScoreUI : MonoBehaviour
     private void UpdateScoreText()
     {
         int currentScore = ScoreManager.Instance.GetScore();
-        int goal = ScoreManager.Instance.GetScoreGoal();
-        scoreText.text = $"Score: {currentScore} / {goal}";
+        scoreText.text = $"{currentScore}";
     }
 
     private void OnDestroy()

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1755797997
+  lastShownTimestamp: 1755901388
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1755797997
+  checkedLastUpdateTimestamp: 1755901388
   lastQOTDResponse:
     questionId: 213
     questionText: What is the purpose of a namespace?
@@ -27,7 +27,7 @@ MonoBehaviour:
     answerC: Keep your code organized
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1755797997
+  lastQotdTimestamp: 1755901388
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle_EndsSoon.png
     topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
@@ -35,11 +35,11 @@ MonoBehaviour:
     bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
       OFF right now!
     bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1755797997
+  lastDynamicHeaderTimestamp: 1755901388
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1755797997
+  websiteLatestMessageTimestamp: 1755901388
   websiteLatestVideos:
     videos:
     - youTubeId: Lgmv7PYKka8
@@ -50,4 +50,4 @@ MonoBehaviour:
       title: Did I STOP making TUTORIALS?
     - youTubeId: XJsidUVPOCY
       title: TOP 10 NEW Games, Made with Unity! (JULY 2025)
-  websiteLatestVideosTimestamp: 1755797997
+  websiteLatestVideosTimestamp: 1755901388
