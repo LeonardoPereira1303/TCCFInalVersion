@@ -153,21 +153,21 @@ public class SplitScreen : MonoBehaviour
 		{
 			Canvas canvas = new GameObject("SplitCanvas").AddComponent<Canvas>();
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-			canvas.sortingOrder = 100; // garante que fique por cima
+			canvas.sortingOrder = 9; // garante que fique por cima
 
-			GameObject line = new GameObject("VerticalSplitter");
-			line.transform.SetParent(canvas.transform, false);
+			GameObject quad = new GameObject("VerticalSplitter");
+			quad.transform.SetParent(canvas.transform, false);
 
-			RectTransform rt = line.AddComponent<RectTransform>();
+			RectTransform rt = quad.AddComponent<RectTransform>();
 			rt.anchorMin = new Vector2(0.5f, 0f);
 			rt.anchorMax = new Vector2(0.5f, 1f);
 			rt.pivot = new Vector2(0.5f, 0.5f);
-			rt.sizeDelta = new Vector2(splitterWidth, 0);
+			rt.sizeDelta = new Vector2(12, 0);
 
-			Image img = line.AddComponent<Image>();
-			img.color = splitterColor.a == 0 ? Color.red : splitterColor; // fallback vermelho se alpha = 0
+			Image img = quad.AddComponent<Image>();
+			img.color = splitterColor.a == 0 ? Color.black : splitterColor; // fallback vermelho se alpha = 0
 
-			uiSplitter = line;
+			uiSplitter = quad;
 		}
 
 		uiSplitter.SetActive(true);
