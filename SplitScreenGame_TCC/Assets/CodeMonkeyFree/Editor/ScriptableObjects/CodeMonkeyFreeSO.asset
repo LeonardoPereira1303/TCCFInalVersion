@@ -14,40 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1755901388
+  lastShownTimestamp: 1757784899
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1755901388
+  checkedLastUpdateTimestamp: 1757784899
   lastQOTDResponse:
-    questionId: 213
-    questionText: What is the purpose of a namespace?
-    answerA: To confuse you
-    answerB: Better performance
-    answerC: Keep your code organized
+    questionId: 221
+    questionText: 'Is this valid code?
+
+      <p>Vector3? targetPosition = new Vector3(10,
+      0, 0);</p>
+
+      <p>Vector3 moveToPosition = targetPosition;</p>'
+    answerA: Yes
+    answerB: No
+    answerC: 
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1755901388
+  lastQotdTimestamp: 1757784899
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle_EndsSoon.png
-    topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ONLY THIS SUMMER!
-    topLink: summer2025bundle
-    bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
-      OFF right now!
-    bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1755901388
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleBundleAug25RealisticEnv.png
+    topText: AWESOME Realistic Environments 99% OFF!
+    topLink: humblebundle
+    bottomText: My 10+ Years of C# Knowledge in 1 Course!
+    bottomLink: csharpcourse
+  lastDynamicHeaderTimestamp: 1757784899
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1755901388
+  websiteLatestMessageTimestamp: 1757784899
   websiteLatestVideos:
     videos:
-    - youTubeId: Lgmv7PYKka8
-      title: Does this AI FINALLY replace Game Devs? Should YOU worry?
-    - youTubeId: x4BTbeKinSI
-      title: TOP 10 FREE NEW Assets AUGUST 2025!
-    - youTubeId: HZ48JOAf-Ko
-      title: Did I STOP making TUTORIALS?
-    - youTubeId: XJsidUVPOCY
-      title: TOP 10 NEW Games, Made with Unity! (JULY 2025)
-  websiteLatestVideosTimestamp: 1755901388
+    - youTubeId: -LQ0C9B2bzQ
+      title: Was I WRONG about Silksong?
+    - youTubeId: 8BIpWVsQFnQ
+      title: TOP 10 NEW Games, Made with Unity! (AUGUST 2025)
+    - youTubeId: ftVR1xwfO5g
+      title: AWESOME FREE Unity Best Practices Tutorials!
+    - youTubeId: mM8B9YPEC10
+      title: You NEED to do this exercise!
+  websiteLatestVideosTimestamp: 1757784899
