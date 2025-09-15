@@ -3951,7 +3951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f293929e9e89174da0375e734cc957d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayingTimerMax: 120
+  gamePlayingTimerMax: 180
 --- !u!4 &317772504
 Transform:
   m_ObjectHideFlags: 0
@@ -9363,7 +9363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91698cf5573821848a2b124cb216e327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreGoal: 500
+  scoreGoal: 300
 --- !u!1 &929424724
 GameObject:
   m_ObjectHideFlags: 0
