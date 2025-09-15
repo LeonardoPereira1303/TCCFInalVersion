@@ -20752,9 +20752,8 @@ MonoBehaviour:
   - phaseName: Fase_1
     availableRecipes:
     - {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
-    - {fileID: 11400000, guid: 95ed5da5147c3b24b86a8f42830524b8, type: 2}
-    - {fileID: 11400000, guid: 367227632a05d5643bc5c1d4d6ac6f6b, type: 2}
     - {fileID: 11400000, guid: 597c920971410b940bd070f8948e0006, type: 2}
+    - {fileID: 11400000, guid: 848b38ff69c27914fbde190960c91395, type: 2}
     firstRecipe: {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
     freezeTimerOnFirstRecipe: 0
     spawnInterval: 8
