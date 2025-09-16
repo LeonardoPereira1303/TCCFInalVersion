@@ -153,7 +153,7 @@ public class DeliveryManager : MonoBehaviour
                     successfulRecipesAmount++;
                     waitingRecipeList.RemoveAt(i);
 
-                    ScoreManager.Instance?.AddScore(10);
+                    ScoreManager.Instance?.AddScore(30);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     OnRecipeSucess?.Invoke(this, EventArgs.Empty);
