@@ -3951,7 +3951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f293929e9e89174da0375e734cc957d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayingTimerMax: 120
+  gamePlayingTimerMax: 180
 --- !u!4 &317772504
 Transform:
   m_ObjectHideFlags: 0
@@ -9363,7 +9363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91698cf5573821848a2b124cb216e327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreGoal: 500
+  scoreGoal: 300
 --- !u!1 &929424724
 GameObject:
   m_ObjectHideFlags: 0
@@ -20752,9 +20752,8 @@ MonoBehaviour:
   - phaseName: Fase_1
     availableRecipes:
     - {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
-    - {fileID: 11400000, guid: 95ed5da5147c3b24b86a8f42830524b8, type: 2}
-    - {fileID: 11400000, guid: 367227632a05d5643bc5c1d4d6ac6f6b, type: 2}
     - {fileID: 11400000, guid: 597c920971410b940bd070f8948e0006, type: 2}
+    - {fileID: 11400000, guid: 848b38ff69c27914fbde190960c91395, type: 2}
     firstRecipe: {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
     freezeTimerOnFirstRecipe: 0
     spawnInterval: 8
