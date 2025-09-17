@@ -14,44 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1757784899
+  lastShownTimestamp: 1758106987
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1757784899
+  checkedLastUpdateTimestamp: 1758106987
   lastQOTDResponse:
-    questionId: 221
-    questionText: 'Is this valid code?
-
-      <p>Vector3? targetPosition = new Vector3(10,
-      0, 0);</p>
-
-      <p>Vector3 moveToPosition = targetPosition;</p>'
-    answerA: Yes
-    answerB: No
-    answerC: 
+    questionId: 222
+    questionText: Which of these are affected when you modify Time.timeScale?
+    answerA: Time.deltaTime, Time.realtimeSinceStartup, Time.unscaledDeltaTime, Time.timeSinceLevelLoad,
+      Time.fixedTime
+    answerB: Time.deltaTime, Time.realtimeSinceStartup, Time.timeSinceLevelLoad,
+      Time.fixedTime
+    answerC: Time.deltaTime, Time.timeSinceLevelLoad, Time.fixedTime
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1757784899
+  lastQotdTimestamp: 1758106987
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleBundleAug25RealisticEnv.png
     topText: AWESOME Realistic Environments 99% OFF!
     topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1757784899
+  lastDynamicHeaderTimestamp: 1758106987
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1757784899
+  websiteLatestMessageTimestamp: 1758106987
   websiteLatestVideos:
     videos:
+    - youTubeId: zQb8oq9IMZs
+      title: Unity 6.3 is HERE!
+    - youTubeId: 4tXBS87J0Po
+      title: TOP 10 FREE NEW Assets SEPTEMBER 2025!
     - youTubeId: -LQ0C9B2bzQ
       title: Was I WRONG about Silksong?
     - youTubeId: 8BIpWVsQFnQ
       title: TOP 10 NEW Games, Made with Unity! (AUGUST 2025)
-    - youTubeId: ftVR1xwfO5g
-      title: AWESOME FREE Unity Best Practices Tutorials!
-    - youTubeId: mM8B9YPEC10
-      title: You NEED to do this exercise!
-  websiteLatestVideosTimestamp: 1757784899
+  websiteLatestVideosTimestamp: 1758106987
