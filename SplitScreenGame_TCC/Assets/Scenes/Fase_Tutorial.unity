@@ -13017,7 +13017,7 @@ MonoBehaviour:
   - {fileID: 2107647393}
   - {fileID: 1656373548}
   - {fileID: 1587411806}
-  delayBeforeFirstPopUp: 1
+  delayBeforeFirstPopUp: 1.5
   keyboardInput: {fileID: 1130590163}
   gamepadInput: {fileID: 1822480182}
 --- !u!1 &1011589553
