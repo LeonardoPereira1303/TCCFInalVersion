@@ -143,7 +143,7 @@
                 {
                     "name": "",
                     "id": "aaf5eca6-228d-41bc-a8a6-b989d3710945",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -176,7 +176,7 @@
                 {
                     "name": "",
                     "id": "8f0da1ae-7890-4ed3-a1ce-4122aff55825",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -198,7 +198,7 @@
                 {
                     "name": "",
                     "id": "60c15f4f-926c-4160-b026-992e9eb20520",
-                    "path": "<XInputController>/rightShoulder",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
