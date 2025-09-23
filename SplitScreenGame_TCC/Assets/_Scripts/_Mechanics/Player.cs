@@ -76,6 +76,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnDashAction(object sender, GameInput.InputActionEventArgs e)
     {
+        if (!KitchenGameManager.Instance.CanPlayersMove()) return; // <- NOVO
         if (canDash && !isDashing)
         {
             StartCoroutine(PerformDash());
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             // Anula qualquer entrada enquanto não puder mover
             return;
         }
-        
+
         HandleMovement();
         HandleInteractions();
     }
