@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4717480676170305280}
   - component: {fileID: 1980557350021196997}
   - component: {fileID: 7356769530836902821}
+  - component: {fileID: 4415860951649254104}
   m_Layer: 0
   m_Name: InputIconsUI
   m_TagString: Untagged
@@ -29,8 +30,8 @@ RectTransform:
   m_GameObject: {fileID: 430674092880359054}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9900991, y: 0.9900991, z: 0.9900991}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4410832449250057974}
   - {fileID: 8700958746406449669}
@@ -128,6 +129,18 @@ MonoBehaviour:
   m_Spacing: {x: 0.2, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &4415860951649254104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430674092880359054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31d14763d490214a8fd731bec74b9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &900774177237836799
 GameObject:
   m_ObjectHideFlags: 0
