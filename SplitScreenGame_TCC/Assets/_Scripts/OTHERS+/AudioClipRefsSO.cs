@@ -14,4 +14,5 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip chargerSizzle;
     public AudioClip[] trash;
     public AudioClip[] warning;
+    public AudioClip[] dash;
 }
