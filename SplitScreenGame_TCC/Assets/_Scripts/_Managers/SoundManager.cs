@@ -74,6 +74,23 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.deliverySuccess, deliveryCounter.transform.position);
     }
 
+    public void PlayDashSound(Vector3 position)
+    {
+        if (audioClipRefsSO.dash != null && audioClipRefsSO.dash.Length > 0)
+        {
+            AudioClip clip = audioClipRefsSO.dash[Random.Range(0, audioClipRefsSO.dash.Length)];
+            AudioSource.PlayClipAtPoint(clip, position);
+        }
+    }
+
+    public void PlayCountdownSound(Vector3 position)
+    {
+        if (audioClipRefsSO.countdown != null)
+        {
+            AudioSource.PlayClipAtPoint(audioClipRefsSO.countdown, position);
+        }
+    }
+
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f){
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
     }

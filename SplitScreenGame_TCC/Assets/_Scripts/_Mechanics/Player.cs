@@ -76,6 +76,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnDashAction(object sender, GameInput.InputActionEventArgs e)
     {
+        if (!KitchenGameManager.Instance.CanPlayersMove()) return; // <- NOVO
         if (canDash && !isDashing)
         {
             StartCoroutine(PerformDash());
@@ -91,6 +92,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         canDash = false;
         isDashing = true;
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayDashSound(transform.position);
+        }
 
         // Ativar o Trail Renderer no in�cio do dash
         if (trailRenderer != null)
@@ -149,7 +155,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             // Anula qualquer entrada enquanto não puder mover
             return;
         }
-        
+
         HandleMovement();
         HandleInteractions();
     }
