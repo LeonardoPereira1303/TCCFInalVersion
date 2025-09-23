@@ -3879,6 +3879,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193537981}
   m_CullTransparentMesh: 1
+--- !u!1001 &193722458
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1869482621}
+    m_Modifications:
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.98815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.344761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467890851993519168, guid: 963fe00fa14d95f499e34944b1328ea9,
+        type: 3}
+      propertyPath: m_Name
+      value: ContainerCounter_ParafusosPregos
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 963fe00fa14d95f499e34944b1328ea9, type: 3}
+--- !u!4 &193722459 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2387352530954491841, guid: 963fe00fa14d95f499e34944b1328ea9,
+    type: 3}
+  m_PrefabInstance: {fileID: 193722458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &202041868
 GameObject:
   m_ObjectHideFlags: 0
@@ -7507,7 +7582,7 @@ PrefabInstance:
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.75
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
@@ -14235,12 +14310,12 @@ PrefabInstance:
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.75
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
@@ -16633,17 +16708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUps:
-  - {fileID: 1337074663}
-  - {fileID: 1630705154}
-  - {fileID: 1621129385}
-  - {fileID: 824943180}
-  - {fileID: 1118314703}
-  - {fileID: 359457325}
-  - {fileID: 177449067}
-  - {fileID: 1152878108}
-  - {fileID: 2107647393}
   - {fileID: 1656373548}
-  - {fileID: 1587411806}
   delayBeforeFirstPopUp: 1
   keyboardInput: {fileID: 1130590163}
   gamepadInput: {fileID: 1822480182}
@@ -24808,12 +24873,12 @@ PrefabInstance:
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.75
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
@@ -31286,12 +31351,12 @@ PrefabInstance:
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.75
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 6742713352697278670, guid: 60c797b1eab12c94eb3147fecc7c08e4,
         type: 3}
@@ -34013,6 +34078,7 @@ Transform:
   - {fileID: 1566606092}
   - {fileID: 1828521420}
   - {fileID: 1570579785}
+  - {fileID: 193722459}
   m_Father: {fileID: 1372753259}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34325,6 +34391,9 @@ MonoBehaviour:
     availableRecipes:
     - {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
     - {fileID: 11400000, guid: 597c920971410b940bd070f8948e0006, type: 2}
+    - {fileID: 11400000, guid: 367227632a05d5643bc5c1d4d6ac6f6b, type: 2}
+    - {fileID: 11400000, guid: b632c322b1d6d3342899a21dac75bc8c, type: 2}
+    - {fileID: 11400000, guid: 52e642dcbbc9c74498bfd1c36fae32ac, type: 2}
     - {fileID: 11400000, guid: 848b38ff69c27914fbde190960c91395, type: 2}
     firstRecipe: {fileID: 11400000, guid: 37ef7b3f5da79c144acb1fb9c4c2f72f, type: 2}
     freezeTimerOnFirstRecipe: 0

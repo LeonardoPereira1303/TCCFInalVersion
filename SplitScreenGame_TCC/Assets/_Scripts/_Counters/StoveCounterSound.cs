@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StoveCounterSound : MonoBehaviour
@@ -11,6 +9,7 @@ public class StoveCounterSound : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true; // som contínuo
     }
 
     private void Start()
@@ -20,14 +19,19 @@ public class StoveCounterSound : MonoBehaviour
 
     private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
     {
-        bool playSound = e.state == StoveCounter.State.Frying || e.state == StoveCounter.State.Fried;
-        if (playSound)
+        if (e.state == StoveCounter.State.Frying || e.state == StoveCounter.State.Fried)
         {
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
-            audioSource.Pause();
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 }
