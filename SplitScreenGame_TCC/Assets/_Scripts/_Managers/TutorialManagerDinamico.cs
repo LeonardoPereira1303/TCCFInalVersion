@@ -1,35 +1,29 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-public class TutorialManagerDinamico : MonoBehaviour
-{
+public class TutorialManagerDinamico : MonoBehaviour {
     public static TutorialManagerDinamico Instance { get; private set; }
 
-    [Header("Configuração de Passos")]
-    [SerializeField] private List<TutorialStep> steps; // lista configurável no inspetor
+    [Header("ConfiguraÃ§Ã£o de Passos")]
+    [SerializeField] private List<TutorialStep> steps;
 
     [Header("UI")]
-    [SerializeField] private Text tutorialText;
+    [SerializeField] private TextMeshProUGUI tutorialText;
 
     private int currentStep = 0;
+    private HighlightableCounter highlightedCounter;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
+    private void Awake() {
+        if (Instance != null && Instance != this) {
             Destroy(gameObject);
             return;
         }
         Instance = this;
     }
 
-    private void Start()
-    {
-        Debug.Log("[Tutorial] Iniciado");
-
-        // Inscrever eventos globais
+    private void Start() {
         ContainerCounter.OnAnyContainerUsed += HandleContainerUsed;
         CuttingCounter.OnAnyCut += HandleCuttingUsed;
         StoveCounter.OnAnyCook += HandleStoveUsed;
@@ -38,8 +32,7 @@ public class TutorialManagerDinamico : MonoBehaviour
         ShowStepInstruction();
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         ContainerCounter.OnAnyContainerUsed -= HandleContainerUsed;
         CuttingCounter.OnAnyCut -= HandleCuttingUsed;
         StoveCounter.OnAnyCook -= HandleStoveUsed;
@@ -47,30 +40,32 @@ public class TutorialManagerDinamico : MonoBehaviour
             DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
     }
 
-    private void ShowStepInstruction()
-    {
-        if (currentStep < steps.Count)
-        {
+    private void ShowStepInstruction() {
+        if (currentStep < steps.Count) {
             var step = steps[currentStep];
+
             if (tutorialText != null)
                 tutorialText.text = step.instruction;
+
+            HighlightCounter(step.highlightTarget);
         }
     }
 
-    private void CompleteStep(TutorialStep.StepType type)
-    {
+    private void HighlightCounter(HighlightableCounter counter) {
+        if (highlightedCounter != null) highlightedCounter.DisableHighlight();
+        highlightedCounter = counter;
+        if (highlightedCounter != null) highlightedCounter.EnableHighlight();
+    }
+
+    private void CompleteStep(TutorialStep.StepType type) {
         if (currentStep >= steps.Count) return;
 
-        if (steps[currentStep].stepType == type)
-        {
-            Debug.Log($"[Tutorial] Passo {type} concluído!");
+        if (steps[currentStep].stepType == type) {
+            Debug.Log($"[Tutorial] Passo {type} concluÃ­do!");
             currentStep++;
-            if (currentStep >= steps.Count)
-            {
-                Debug.Log("[Tutorial] Finalizado!");
-                if (tutorialText != null)
-                    tutorialText.text = "Tutorial concluído!";
-
+            if (currentStep >= steps.Count) {
+                tutorialText.text = "Tutorial concluÃ­do!";
+                HighlightCounter(null);
                 KitchenGameManager.Instance.CompleteTutorial();
                 return;
             }
@@ -78,23 +73,8 @@ public class TutorialManagerDinamico : MonoBehaviour
         }
     }
 
-    private void HandleContainerUsed(object sender, EventArgs e)
-    {
-        CompleteStep(TutorialStep.StepType.Container);
-    }
-
-    private void HandleCuttingUsed(object sender, EventArgs e)
-    {
-        CompleteStep(TutorialStep.StepType.Cutting);
-    }
-
-    private void HandleStoveUsed(object sender, EventArgs e)
-    {
-        CompleteStep(TutorialStep.StepType.Stove);
-    }
-
-    private void HandleRecipeDelivered(object sender, EventArgs e)
-    {
-        CompleteStep(TutorialStep.StepType.Delivery);
-    }
+    private void HandleContainerUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Container);
+    private void HandleCuttingUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Cutting);
+    private void HandleStoveUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Stove);
+    private void HandleRecipeDelivered(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Delivery);
 }
