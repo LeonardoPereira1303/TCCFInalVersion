@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialManagerDinamico : MonoBehaviour
 {
     public static TutorialManagerDinamico Instance { get; private set; }
+
+    [Header("Configuração de Passos")]
+    [SerializeField] private List<TutorialStep> steps; // lista configurável no inspetor
 
     [Header("UI")]
     [SerializeField] private Text tutorialText;
@@ -27,8 +31,8 @@ public class TutorialManagerDinamico : MonoBehaviour
 
         // Inscrever eventos globais
         ContainerCounter.OnAnyContainerUsed += HandleContainerUsed;
-        CuttingCounter.OnAnyCut += HandleCuttingOrStoveUsed;
-        StoveCounter.OnAnyCook += HandleCuttingOrStoveUsed;
+        CuttingCounter.OnAnyCut += HandleCuttingUsed;
+        StoveCounter.OnAnyCook += HandleStoveUsed;
         DeliveryManager.Instance.OnRecipeSucess += HandleRecipeDelivered;
 
         ShowStepInstruction();
@@ -37,68 +41,60 @@ public class TutorialManagerDinamico : MonoBehaviour
     private void OnDestroy()
     {
         ContainerCounter.OnAnyContainerUsed -= HandleContainerUsed;
-        CuttingCounter.OnAnyCut -= HandleCuttingOrStoveUsed;
-        StoveCounter.OnAnyCook -= HandleCuttingOrStoveUsed;
+        CuttingCounter.OnAnyCut -= HandleCuttingUsed;
+        StoveCounter.OnAnyCook -= HandleStoveUsed;
         if (DeliveryManager.Instance != null)
             DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
     }
 
     private void ShowStepInstruction()
     {
-        switch (currentStep)
+        if (currentStep < steps.Count)
         {
-            case 0:
-                SetText("Pegue um ingrediente no Container.");
-                break;
-            case 1:
-                SetText("Leve o ingrediente até a bancada de corte ou fogão.");
-                break;
-            case 2:
-                SetText("Agora entregue o prato no balcão de Delivery.");
-                break;
-            case 3:
-                SetText("Parabéns! Tutorial concluído!");
-                break;
+            var step = steps[currentStep];
+            if (tutorialText != null)
+                tutorialText.text = step.instruction;
         }
     }
 
-    private void SetText(string msg)
+    private void CompleteStep(TutorialStep.StepType type)
     {
-        if (tutorialText != null)
-            tutorialText.text = msg;
+        if (currentStep >= steps.Count) return;
+
+        if (steps[currentStep].stepType == type)
+        {
+            Debug.Log($"[Tutorial] Passo {type} concluído!");
+            currentStep++;
+            if (currentStep >= steps.Count)
+            {
+                Debug.Log("[Tutorial] Finalizado!");
+                if (tutorialText != null)
+                    tutorialText.text = "Tutorial concluído!";
+
+                KitchenGameManager.Instance.CompleteTutorial();
+                return;
+            }
+            ShowStepInstruction();
+        }
     }
 
     private void HandleContainerUsed(object sender, EventArgs e)
     {
-        if (currentStep == 0)
-        {
-            Debug.Log("[Tutorial] Ingrediente coletado!");
-            NextStep();
-        }
+        CompleteStep(TutorialStep.StepType.Container);
     }
 
-    private void HandleCuttingOrStoveUsed(object sender, EventArgs e)
+    private void HandleCuttingUsed(object sender, EventArgs e)
     {
-        if (currentStep == 1)
-        {
-            Debug.Log("[Tutorial] Ingrediente preparado!");
-            NextStep();
-        }
+        CompleteStep(TutorialStep.StepType.Cutting);
+    }
+
+    private void HandleStoveUsed(object sender, EventArgs e)
+    {
+        CompleteStep(TutorialStep.StepType.Stove);
     }
 
     private void HandleRecipeDelivered(object sender, EventArgs e)
     {
-        if (currentStep == 2)
-        {
-            Debug.Log("[Tutorial] Pedido entregue!");
-            NextStep();
-            KitchenGameManager.Instance.CompleteTutorial();
-        }
-    }
-
-    private void NextStep()
-    {
-        currentStep++;
-        ShowStepInstruction();
+        CompleteStep(TutorialStep.StepType.Delivery);
     }
 }

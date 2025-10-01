@@ -18707,6 +18707,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d41c73c0e1ad8a4bbace0f74ec82a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  steps:
+  - stepType: 0
+    instruction: Pegue o item
+  - stepType: 1
+    instruction: Crie a bateria
+  - stepType: 2
+    instruction: Carregue a bateria
+  - stepType: 3
+    instruction: Coloque-a em um prato e a entregue
   tutorialText: {fileID: 1495327084}
 --- !u!1 &1011589553
 GameObject:
@@ -28452,11 +28461,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 101
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
