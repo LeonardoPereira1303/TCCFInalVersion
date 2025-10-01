@@ -5,6 +5,8 @@ using System;
 
 public class StoveCounter : BaseCounter, IHasProgress
 {
+    public static event EventHandler OnAnyCook;
+
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
@@ -56,6 +58,8 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                         burningTimer = 0f;
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+
+                        OnAnyCook?.Invoke(this, EventArgs.Empty);
                     }
                     break;
 
