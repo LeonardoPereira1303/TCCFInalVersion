@@ -631,7 +631,7 @@ MonoBehaviour:
   counterTopPoint: {fileID: 7389866923763995607}
   counterVisual: {fileID: 6522570062159506443}
   kitchenObjectSO: {fileID: 11400000, guid: 240da2beeee862a49b297e18058305d0, type: 2}
-  teleportDelay: 3
+  teleportDelay: 1.5
   targetCounter: {fileID: 0}
 --- !u!4 &6133372320432314859 stripped
 Transform:
