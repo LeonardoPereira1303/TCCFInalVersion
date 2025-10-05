@@ -10,7 +10,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
     [SerializeField] private List<TutorialStep> steps;
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI tutorialText;
+    [SerializeField] private TextMeshProUGUI tutorialTextPlayer1;
+    [SerializeField] private TextMeshProUGUI tutorialTextPlayer2;
 
     private int currentStep = 0;
     private HighlightableCounter highlightedCounter;
@@ -40,16 +41,22 @@ public class TutorialManagerDinamico : MonoBehaviour {
             DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
     }
 
-    private void ShowStepInstruction() {
-        if (currentStep < steps.Count) {
+    private void ShowStepInstruction()
+    {
+        if (currentStep < steps.Count)
+        {
             var step = steps[currentStep];
 
-            if (tutorialText != null)
-                tutorialText.text = step.instruction;
+            if (tutorialTextPlayer1 != null)
+                tutorialTextPlayer1.text = step.instruction;
+
+            if (tutorialTextPlayer2 != null)
+                tutorialTextPlayer2.text = step.instruction;
 
             HighlightCounter(step.highlightTarget);
         }
     }
+
 
     private void HighlightCounter(HighlightableCounter counter) {
         if (highlightedCounter != null) highlightedCounter.DisableHighlight();
@@ -57,21 +64,38 @@ public class TutorialManagerDinamico : MonoBehaviour {
         if (highlightedCounter != null) highlightedCounter.EnableHighlight();
     }
 
-    private void CompleteStep(TutorialStep.StepType type) {
+    private void CompleteStep(TutorialStep.StepType type)
+    {
         if (currentStep >= steps.Count) return;
 
-        if (steps[currentStep].stepType == type) {
+        if (steps[currentStep].stepType == type)
+        {
             Debug.Log($"[Tutorial] Passo {type} concluído!");
             currentStep++;
-            if (currentStep >= steps.Count) {
-                tutorialText.text = "Tutorial concluído!";
+
+            if (currentStep >= steps.Count)
+            {
+                // Quando termina o tutorial
+                if (tutorialTextPlayer1 != null)
+                    tutorialTextPlayer1.text = "Tutorial concluído!";
+                if (tutorialTextPlayer2 != null)
+                    tutorialTextPlayer2.text = "Tutorial concluído!";
+
                 HighlightCounter(null);
                 KitchenGameManager.Instance.CompleteTutorial();
                 return;
             }
+
+            // Atualiza instrução dos dois jogadores
+            if (tutorialTextPlayer1 != null)
+                tutorialTextPlayer1.text = steps[currentStep].instruction;
+            if (tutorialTextPlayer2 != null)
+                tutorialTextPlayer2.text = steps[currentStep].instruction;
+
             ShowStepInstruction();
         }
     }
+
 
     private void HandleContainerUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Container);
     private void HandleCuttingUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Cutting);
