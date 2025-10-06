@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1759589071
+  lastShownTimestamp: 1759786099
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1759589071
+  checkedLastUpdateTimestamp: 1759786099
   lastQOTDResponse:
     questionId: 228
     questionText: What does Normalizing a Vector do?
@@ -27,26 +27,26 @@ MonoBehaviour:
     answerC: Flatten the z
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1759589071
+  lastQotdTimestamp: 1759786099
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: After 1 year there's a new Synty Humble Bundle! DON'T MISS IT!
     topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1759589071
+  lastDynamicHeaderTimestamp: 1759786099
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1759589071
+  websiteLatestMessageTimestamp: 1759786099
   websiteLatestVideos:
     videos:
+    - youTubeId: RBgFEaRn_jg
+      title: Is YouTube EASY MONEY compared to Game Dev?
+    - youTubeId: Q59s-VS684o
+      title: MASSIVE Unity Security Vulnerability! (but also nothing to worry about)
     - youTubeId: vhflNElicXU
       title: Optimization is awesome, but do NOT make this mistake!
     - youTubeId: _UadeZn6kI8
       title: Should you use UI Toolkit or Unity UI?
-    - youTubeId: E7OBm60vUCY
-      title: BEST NEW Visual Assets to INSPIRE YOU!
-    - youTubeId: 5GqRR8-yYvQ
-      title: How I find AWESOME Game Dev stuff!
-  websiteLatestVideosTimestamp: 1759589071
+  websiteLatestVideosTimestamp: 1759786099
