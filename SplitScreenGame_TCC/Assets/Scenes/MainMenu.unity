@@ -2942,6 +2942,7 @@ GameObject:
   - component: {fileID: 430746434}
   - component: {fileID: 430746436}
   - component: {fileID: 430746435}
+  - component: {fileID: 430746437}
   m_Layer: 5
   m_Name: K_Icon
   m_TagString: Untagged
@@ -3007,6 +3008,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430746433}
   m_CullTransparentMesh: 1
+--- !u!114 &430746437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430746433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d963a592ab98046bc51ca0cf3455fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInput: {fileID: 926270671}
+  targetImage: {fileID: 430746435}
+  keyboardIcon: {fileID: 21300000, guid: 2e51321841b5f00479604139ffd9f0cc, type: 3}
+  xboxIcon: {fileID: 21300000, guid: 685cd34871dbf6f4f8654210d1bc0ddc, type: 3}
+  playstationIcon: {fileID: 21300000, guid: d5316a7ad6d161a48b64d7af9e39312a, type: 3}
 --- !u!1 &438521557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 685cd34871dbf6f4f8654210d1bc0ddc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d179c18a3f3a74439502c90ede3bb41, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3428,7 +3446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d5316a7ad6d161a48b64d7af9e39312a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b71a4900456276d448cfc23db60c7f5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5724,6 +5742,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890561353}
   m_CullTransparentMesh: 1
+--- !u!1 &926270670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926270672}
+  - component: {fileID: 926270671}
+  m_Layer: 0
+  m_Name: GameInput_Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &926270671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926270670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310077522a7b80840839fb8a5454f374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceName: Gamepad
+--- !u!4 &926270672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926270670}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937197962
 GameObject:
   m_ObjectHideFlags: 0
@@ -11188,6 +11251,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981030194}
   m_CullTransparentMesh: 1
+--- !u!1 &2011013984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011013986}
+  - component: {fileID: 2011013985}
+  m_Layer: 0
+  m_Name: GameInput_Keyboard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011013985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011013984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310077522a7b80840839fb8a5454f374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceName: Keyboard
+--- !u!4 &2011013986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011013984}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047227672
 GameObject:
   m_ObjectHideFlags: 0
