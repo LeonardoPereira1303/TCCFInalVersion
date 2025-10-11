@@ -14,39 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1759924503
+  lastShownTimestamp: 1760144528
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1759924503
+  checkedLastUpdateTimestamp: 1760144528
   lastQOTDResponse:
-    questionId: 229
-    questionText: What is the orthographicSize in a 2D camera?
-    answerA: Units visible horizontally
-    answerB: Units visible vertically
-    answerC: Half the units visible horizontally
-    answerD: Half the units visible vertically
+    questionId: 230
+    questionText: How should you store the health of each unit in your game?
+    answerA: public int health;
+    answerB: private int health;
+    answerC: public static int health;
+    answerD: private int h;
     answerE: 
-  lastQotdTimestamp: 1759924503
+  lastQotdTimestamp: 1760144528
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: After 1 year there's a new Synty Humble Bundle! DON'T MISS IT!
     topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1759924503
+  lastDynamicHeaderTimestamp: 1760144528
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1759924503
+  websiteLatestMessageTimestamp: 1760144528
   websiteLatestVideos:
     videos:
+    - youTubeId: 6jjwMLflLOU
+      title: This AWESOME Tool MULTIPLIES all your assets!
+    - youTubeId: iTpoP8M6dxg
+      title: 8 QUICK Unity Tips to make BETTER Games!
     - youTubeId: RBgFEaRn_jg
       title: Is YouTube EASY MONEY compared to Game Dev?
     - youTubeId: Q59s-VS684o
       title: MASSIVE Unity Security Vulnerability! (but also nothing to worry about)
-    - youTubeId: vhflNElicXU
-      title: Optimization is awesome, but do NOT make this mistake!
-    - youTubeId: _UadeZn6kI8
-      title: Should you use UI Toolkit or Unity UI?
-  websiteLatestVideosTimestamp: 1759924503
+  websiteLatestVideosTimestamp: 1760144528

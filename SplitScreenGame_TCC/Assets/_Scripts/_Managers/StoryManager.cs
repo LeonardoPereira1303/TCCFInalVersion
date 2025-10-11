@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour
+public class StoryManager : MonoBehaviour
 {
-    [Header("Tutorial Config")]
+    [Header("Story Config")]
     public GameObject[] popUps;
     public float delayBeforeFirstPopUp = 1.5f;
 
@@ -37,11 +37,11 @@ public class TutorialManager : MonoBehaviour
     {
         if (popUpIndex < popUps.Length)
         {
-            AdvanceTutorial();
+            AdvanceStory();
         }
     }
 
-    private void AdvanceTutorial()
+    private void AdvanceStory()
     {
         popUpIndex++;
 
@@ -52,7 +52,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             HideAllPopUps();
-            KitchenGameManager.Instance.CompleteTutorial();
+            KitchenGameManager.Instance.CompleteStory();
         }
     }
 

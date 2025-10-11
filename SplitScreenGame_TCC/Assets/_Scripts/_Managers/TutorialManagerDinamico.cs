@@ -82,7 +82,7 @@ public class TutorialManagerDinamico : MonoBehaviour {
                     tutorialTextPlayer2.text = "Tutorial concluído!";
 
                 HighlightCounter(null);
-                KitchenGameManager.Instance.CompleteTutorial();
+                KitchenGameManager.Instance.CompleteStory();
                 return;
             }
 

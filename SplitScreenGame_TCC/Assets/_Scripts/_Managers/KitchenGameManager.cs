@@ -97,7 +97,7 @@ public class KitchenGameManager : MonoBehaviour
     public void FreezePhaseTime() => phaseTimeStarted = false;
     public void StartPhaseTime() => phaseTimeStarted = true;
 
-    public void CompleteTutorial()
+    public void CompleteStory()
     {
         tutorialCompleted = true;
         IsTutorialActive = false;
