@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 {
     public static event EventHandler OnAnyObjectPlacedHere;
+    public static event EventHandler OnAnyCounterInteracted;
     [SerializeField] private Transform counterTopPoint;
     [SerializeField] SelectedCounterVisual counterVisual;
 
@@ -22,6 +23,8 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
    public virtual void Interact(Player player) {
         Debug.LogError("BaseCounter.Interact()");
+
+        OnAnyCounterInteracted?.Invoke(this, EventArgs.Empty);
    }
 
    public virtual void InteractAlternate(Player player) {

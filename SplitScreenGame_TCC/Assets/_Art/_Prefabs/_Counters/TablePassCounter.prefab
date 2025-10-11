@@ -537,6 +537,19 @@ MonoBehaviour:
   kitchenObjectSO: {fileID: 11400000, guid: 240da2beeee862a49b297e18058305d0, type: 2}
   teleportDelay: 1.5
   targetCounter: {fileID: 0}
+--- !u!114 &6986763513835750035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602203938397506154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c446ef91fddab489f56fa71d3879ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ffd3eabf2a7fffa40b3371f8763da3c7, type: 2}
 --- !u!4 &6133372320432314859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7815841665460773420, guid: 306aaf24ffef90c48ae1beb4a4dd74c3,

@@ -6,6 +6,8 @@ public class KitchenGameManager : MonoBehaviour
 {
     public static KitchenGameManager Instance { get; private set; }
     public event EventHandler OnStateChanged;
+    public event EventHandler OnStoryCompleted;
+
     public bool IsTutorialActive { get; private set; } = true;
 
     private enum State
@@ -101,6 +103,9 @@ public class KitchenGameManager : MonoBehaviour
     {
         tutorialCompleted = true;
         IsTutorialActive = false;
+        
+        Debug.Log("[GameManager] História concluída!");
+        OnStoryCompleted?.Invoke(this, EventArgs.Empty);
     }
 
     public bool IsGamePlaying() => state == State.GamePlaying;

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TutorialManagerDinamico : MonoBehaviour {
     public static TutorialManagerDinamico Instance { get; private set; }
@@ -11,10 +12,11 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI tutorialTextPlayer1;
-    [SerializeField] private TextMeshProUGUI tutorialTextPlayer2;
+    [SerializeField] private Image tutorialImage;
 
     private int currentStep = 0;
     private HighlightableCounter highlightedCounter;
+    private bool tutorialActive = false;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -22,83 +24,118 @@ public class TutorialManagerDinamico : MonoBehaviour {
             return;
         }
         Instance = this;
+
+        // Começa desativado
+        SetTutorialActive(false);
     }
 
     private void Start() {
+        // Aguarda o jogo começar
+        KitchenGameManager.Instance.OnStateChanged += HandleGameStateChanged;
+
+        // Eventos de interação
         ContainerCounter.OnAnyContainerUsed += HandleContainerUsed;
         CuttingCounter.OnAnyCut += HandleCuttingUsed;
         StoveCounter.OnAnyCook += HandleStoveUsed;
         DeliveryManager.Instance.OnRecipeSucess += HandleRecipeDelivered;
 
-        ShowStepInstruction();
+        // 👇 Novo evento genérico de balcão (Counter)
+        BaseCounter.OnAnyCounterInteracted += HandleCounterInteracted;
     }
 
     private void OnDestroy() {
+        if (KitchenGameManager.Instance != null)
+            KitchenGameManager.Instance.OnStateChanged -= HandleGameStateChanged;
+
         ContainerCounter.OnAnyContainerUsed -= HandleContainerUsed;
         CuttingCounter.OnAnyCut -= HandleCuttingUsed;
         StoveCounter.OnAnyCook -= HandleStoveUsed;
-        if (DeliveryManager.Instance != null)
-            DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
+        DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
+
+        BaseCounter.OnAnyCounterInteracted -= HandleCounterInteracted;
     }
 
-    private void ShowStepInstruction()
-    {
-        if (currentStep < steps.Count)
-        {
-            var step = steps[currentStep];
+    private void SetTutorialActive(bool active) {
+        tutorialActive = active;
 
-            if (tutorialTextPlayer1 != null)
-                tutorialTextPlayer1.text = step.instruction;
+        if (tutorialTextPlayer1 != null)
+            tutorialTextPlayer1.gameObject.SetActive(active);
 
-            if (tutorialTextPlayer2 != null)
-                tutorialTextPlayer2.text = step.instruction;
+        if (tutorialImage != null)
+            tutorialImage.gameObject.SetActive(active);
 
-            HighlightCounter(step.highlightTarget);
+        if (!active && highlightedCounter != null)
+            highlightedCounter.DisableHighlight();
+    }
+
+    private void HandleGameStateChanged(object sender, EventArgs e) {
+        if (KitchenGameManager.Instance.IsGamePlaying()) {
+            Debug.Log("[Tutorial] Contagem regressiva finalizada — iniciando tutorial dinâmico.");
+            StartTutorial();
         }
     }
 
+    private void StartTutorial() {
+        if (tutorialActive) return;
 
-    private void HighlightCounter(HighlightableCounter counter) {
-        if (highlightedCounter != null) highlightedCounter.DisableHighlight();
-        highlightedCounter = counter;
-        if (highlightedCounter != null) highlightedCounter.EnableHighlight();
+        currentStep = 0;
+        SetTutorialActive(true);
+        ShowStepInstruction();
     }
 
-    private void CompleteStep(TutorialStep.StepType type)
-    {
-        if (currentStep >= steps.Count) return;
+    private void ShowStepInstruction() {
+        if (!tutorialActive || currentStep >= steps.Count)
+            return;
 
-        if (steps[currentStep].stepType == type)
-        {
+        var step = steps[currentStep];
+
+        if (tutorialTextPlayer1 != null)
+            tutorialTextPlayer1.text = step.instruction;
+
+        if (tutorialImage != null)
+            tutorialImage.sprite = step.image;
+
+        HighlightCounter(step.highlightTarget);
+    }
+
+    private void HighlightCounter(HighlightableCounter counter) {
+        if (highlightedCounter != null)
+            highlightedCounter.DisableHighlight();
+
+        highlightedCounter = counter;
+
+        if (highlightedCounter != null)
+            highlightedCounter.EnableHighlight();
+    }
+
+    private void CompleteStep(TutorialStep.StepType type) {
+        if (!tutorialActive || currentStep >= steps.Count)
+            return;
+
+        if (steps[currentStep].stepType == type) {
             Debug.Log($"[Tutorial] Passo {type} concluído!");
             currentStep++;
 
-            if (currentStep >= steps.Count)
-            {
-                // Quando termina o tutorial
+            if (currentStep >= steps.Count) {
                 if (tutorialTextPlayer1 != null)
                     tutorialTextPlayer1.text = "Tutorial concluído!";
-                if (tutorialTextPlayer2 != null)
-                    tutorialTextPlayer2.text = "Tutorial concluído!";
+
+                if (tutorialImage != null)
+                    tutorialImage.sprite = null;
 
                 HighlightCounter(null);
-                KitchenGameManager.Instance.CompleteStory();
+                SetTutorialActive(false);
                 return;
             }
-
-            // Atualiza instrução dos dois jogadores
-            if (tutorialTextPlayer1 != null)
-                tutorialTextPlayer1.text = steps[currentStep].instruction;
-            if (tutorialTextPlayer2 != null)
-                tutorialTextPlayer2.text = steps[currentStep].instruction;
 
             ShowStepInstruction();
         }
     }
 
-
+    // Handlers dos eventos de passos
     private void HandleContainerUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Container);
     private void HandleCuttingUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Cutting);
     private void HandleStoveUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Stove);
     private void HandleRecipeDelivered(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Delivery);
+    private void HandleCounterInteracted(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Counter);
 }

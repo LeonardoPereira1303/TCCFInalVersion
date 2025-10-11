@@ -8,10 +8,12 @@ public class TutorialStep
         Container,
         Cutting,
         Stove,
-        Delivery
+        Delivery,
+        Counter
     }
 
     public StepType stepType;
     [TextArea] public string instruction;
     public HighlightableCounter highlightTarget; // <- usado para glow
+    public Sprite image;
 }
