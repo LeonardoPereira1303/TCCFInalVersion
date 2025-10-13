@@ -1,13 +1,14 @@
-Shader "Custom/OutlineGlow"
+Shader "Custom/OutlineGlow_Stronger"
 {
     Properties
     {
         _OutlineColor("Outline Color", Color) = (1,1,0,1)
-        _OutlineWidth("Outline Width", Range(0.0, 0.1)) = 0.02
+        _OutlineWidth("Outline Width", Range(0.0, 0.2)) = 0.05   // Aumentei o limite máximo
 
         _GlowColor("Glow Color", Color) = (0,1,1,1)
-        _GlowIntensity("Glow Intensity", Range(0, 5)) = 1.5
-        _GlowPower("Glow Power", Range(0.5, 8)) = 2.0
+        _GlowIntensity("Glow Intensity", Range(0,10)) = 3.0       // Intensidade maior
+        _GlowPower("Glow Power", Range(0.1,10)) = 1.5             // Menor power → transição mais suave
+        _GlowSharpness("Glow Sharpness", Range(0.1,10)) = 3.0     // Novo controle para o decaimento
     }
 
     SubShader
@@ -43,14 +44,15 @@ Shader "Custom/OutlineGlow"
             fixed4 _GlowColor;
             float _GlowIntensity;
             float _GlowPower;
+            float _GlowSharpness;
 
             v2f vert (appdata v)
             {
                 v2f o;
 
-                // posição + expansão do contorno
+                // Expande o modelo no sentido da normal — outline visivelmente mais espesso
                 float3 worldNormal = UnityObjectToWorldNormal(v.normal);
-                float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz + worldNormal * _OutlineWidth;
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz + worldNormal * _OutlineWidth * 1.5;
 
                 o.pos = mul(UNITY_MATRIX_VP, float4(worldPos,1.0));
                 o.worldNormal = worldNormal;
@@ -61,13 +63,13 @@ Shader "Custom/OutlineGlow"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Fresnel para glow
+                // Fresnel ajustado para brilho mais intenso e suave
                 float fresnel = pow(1.0 - saturate(dot(normalize(i.worldNormal), normalize(i.viewDir))), _GlowPower);
-                float glow = fresnel * _GlowIntensity;
+                float glow = pow(fresnel, _GlowSharpness) * _GlowIntensity;
 
                 fixed4 col = _OutlineColor;
-                col.rgb += _GlowColor.rgb * glow;
-                col.a = saturate(_OutlineColor.a + glow * 0.5);
+                col.rgb = lerp(col.rgb, _GlowColor.rgb, glow); // mistura suave entre cor e glow
+                col.a = saturate(_OutlineColor.a + glow * 0.7);
 
                 return col;
             }
