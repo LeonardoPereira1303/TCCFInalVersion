@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1760144528
+  lastShownTimestamp: 1760318084
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1760144528
+  checkedLastUpdateTimestamp: 1760318084
   lastQOTDResponse:
     questionId: 230
     questionText: How should you store the health of each unit in your game?
@@ -27,26 +27,26 @@ MonoBehaviour:
     answerC: public static int health;
     answerD: private int h;
     answerE: 
-  lastQotdTimestamp: 1760144528
+  lastQotdTimestamp: 1760318084
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: After 1 year there's a new Synty Humble Bundle! DON'T MISS IT!
     topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1760144528
+  lastDynamicHeaderTimestamp: 1760318084
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1760144528
+  websiteLatestMessageTimestamp: 1760318084
   websiteLatestVideos:
     videos:
+    - youTubeId: bTQZU_CV9UY
+      title: TOP 10 FREE NEW Assets OCTOBER 2025!
     - youTubeId: 6jjwMLflLOU
       title: This AWESOME Tool MULTIPLIES all your assets!
     - youTubeId: iTpoP8M6dxg
       title: 8 QUICK Unity Tips to make BETTER Games!
     - youTubeId: RBgFEaRn_jg
       title: Is YouTube EASY MONEY compared to Game Dev?
-    - youTubeId: Q59s-VS684o
-      title: MASSIVE Unity Security Vulnerability! (but also nothing to worry about)
-  websiteLatestVideosTimestamp: 1760144528
+  websiteLatestVideosTimestamp: 1760318084
