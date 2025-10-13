@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class TutorialManagerDinamico : MonoBehaviour {
     public static TutorialManagerDinamico Instance { get; private set; }
 
-    [SerializeField] private ObjectiveArrow arrowPlayer1;
-    [SerializeField] private ObjectiveArrow arrowPlayer2;
+    [SerializeField] private ObjectiveArrowSingle arrowPointer;
+
     [SerializeField] private Transform player1;
     [SerializeField] private Transform player2;
 
@@ -47,10 +47,6 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
         // 👇 Novo evento genérico de balcão (Counter)
         BaseCounter.OnAnyCounterInteracted += HandleCounterInteracted;
-
-        // 🔹 Vincula automaticamente a câmera do Player 2 (SplitScreen gera em runtime)
-        Invoke(nameof(LinkPlayerTwoCamera), 1f); // espera 1 segundo pra câmera ser criada
-
     }
 
     private void OnDestroy() {
@@ -119,22 +115,15 @@ public class TutorialManagerDinamico : MonoBehaviour {
         {
             highlightedCounter.EnableHighlight();
 
-            // 🔹 Atualiza as setas dos jogadores
-            if (arrowPlayer1 != null)
-                arrowPlayer1.SetTarget(highlightedCounter.transform);
-
-            if (arrowPlayer2 != null)
-                arrowPlayer2.SetTarget(highlightedCounter.transform);
+            if (arrowPointer != null)
+                arrowPointer.SetTarget(highlightedCounter.transform);
         }
         else
         {
-            if (arrowPlayer1 != null)
-                arrowPlayer1.SetTarget(null);
-            if (arrowPlayer2 != null)
-                arrowPlayer2.SetTarget(null);
+            if (arrowPointer != null)
+                arrowPointer.SetTarget(null);
         }
     }
-
 
     private void CompleteStep(TutorialStep.StepType type) {
         if (!tutorialActive || currentStep >= steps.Count)
@@ -158,25 +147,6 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
             ShowStepInstruction();
         }
-    }
-
-    private void LinkPlayerTwoCamera()
-    {
-        var arrow = arrowPlayer2;
-        if (arrow != null)
-        {
-            var arrowScript = arrow.GetComponent<ObjectiveArrow>();
-            if (arrowScript.GetPlayerCamera() == null)
-            {
-                var camObj = GameObject.Find("Generated Splitscreen Camera");
-                if (camObj != null)
-                {
-                    arrowScript.SetPlayerCamera(camObj.GetComponent<Camera>());
-                    Debug.Log("[Tutorial] Câmera do Player 2 vinculada à seta com sucesso!");
-                }
-            }
-        }
-
     }
 
     // Handlers dos eventos de passos
