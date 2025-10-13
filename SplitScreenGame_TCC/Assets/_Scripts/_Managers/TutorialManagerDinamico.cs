@@ -9,6 +9,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
     [SerializeField] private ObjectiveArrowSingle arrowPointer;
 
+    //[SerializeField] private WorldArrowPointer arrowPointer;
+
     [SerializeField] private Transform player1;
     [SerializeField] private Transform player2;
 
