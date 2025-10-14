@@ -14,31 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1760318084
+  lastShownTimestamp: 1760464490
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1760318084
+  checkedLastUpdateTimestamp: 1760464490
   lastQOTDResponse:
-    questionId: 230
-    questionText: How should you store the health of each unit in your game?
-    answerA: public int health;
-    answerB: private int health;
-    answerC: public static int health;
-    answerD: private int h;
+    questionId: 231
+    questionText: 'What is the possible error in this code:
+
+      <p>tickTimer +=
+      Time.deltaTime;</p>
+
+      <p>if (tickTimer &gt;= TICK_TIMER_MAX) {</p>
+
+      <p>&nbsp;
+      &nbsp; tickTimer -= TICK_TIMER_MAX;</p>
+
+      <p>&nbsp; &nbsp; tick++;</p>
+
+      <p>&nbsp;
+      &nbsp; OnTickEvent(this, EventArgs.Empty);</p>
+
+      <p>}</p>'
+    answerA: None
+    answerB: NullReferenceException
+    answerC: 2 ticks at once
+    answerD: 
     answerE: 
-  lastQotdTimestamp: 1760318084
+  lastQotdTimestamp: 1760464490
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: After 1 year there's a new Synty Humble Bundle! DON'T MISS IT!
     topLink: humblebundle
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1760318084
+  lastDynamicHeaderTimestamp: 1760464490
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1760318084
+  websiteLatestMessageTimestamp: 1760464490
   websiteLatestVideos:
     videos:
     - youTubeId: bTQZU_CV9UY
@@ -49,4 +64,4 @@ MonoBehaviour:
       title: 8 QUICK Unity Tips to make BETTER Games!
     - youTubeId: RBgFEaRn_jg
       title: Is YouTube EASY MONEY compared to Game Dev?
-  websiteLatestVideosTimestamp: 1760318084
+  websiteLatestVideosTimestamp: 1760464490

@@ -787,3 +787,16 @@ MonoBehaviour:
   counterTopPoint: {fileID: 1347030434867076605}
   counterVisual: {fileID: 9030265334716116478}
   kitchenObjectSO: {fileID: 11400000, guid: 9cdf59ac5e7f6b343a8e94fb947ce90f, type: 2}
+--- !u!114 &509599145136030132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467890851993519168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c446ef91fddab489f56fa71d3879ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ffd3eabf2a7fffa40b3371f8763da3c7, type: 2}
