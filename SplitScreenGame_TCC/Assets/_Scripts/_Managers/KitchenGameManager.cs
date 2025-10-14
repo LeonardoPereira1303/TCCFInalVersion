@@ -153,6 +153,14 @@ public class KitchenGameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene("Fase_1");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // Verifica se ainda há cenas no build
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Time.timeScale = 1f; // garante que o jogo não esteja pausado
+            SceneManager.LoadScene(nextSceneIndex);
+        }
     }
 }
