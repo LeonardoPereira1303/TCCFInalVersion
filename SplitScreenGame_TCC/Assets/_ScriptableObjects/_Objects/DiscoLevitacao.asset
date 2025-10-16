@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DiscoLevitacao
   m_EditorClassIdentifier: 
   prefab: {fileID: 8976092703561611651, guid: 7a21e67a4b024b1498e712aa848e7675, type: 3}
-  sprite: {fileID: 21300000, guid: 1bc2520b7ceec4f4f934c53821df682b, type: 3}
+  sprite: {fileID: 21300000, guid: 8a9a27db5c75dfb4bbc76f7b7bee0c8e, type: 3}
   objectName: Pneu

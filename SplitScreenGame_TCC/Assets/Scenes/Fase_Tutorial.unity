@@ -15963,7 +15963,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameInput
       value: 
-      objectReference: {fileID: 1822480182}
+      objectReference: {fileID: 1130590163}
     - target: {fileID: 5467890851993519168, guid: 8a63aaa80ba622d47904d4e71203fe1b,
         type: 3}
       propertyPath: m_Name
