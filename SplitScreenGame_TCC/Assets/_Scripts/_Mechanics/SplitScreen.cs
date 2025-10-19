@@ -115,7 +115,7 @@ public class SplitScreen : MonoBehaviour
 			}
 			else
 			{
-				camera2.transform.position = Vector3.Lerp(camera2.transform.position, midPoint2 + new Vector3(0, 13, -8), Time.deltaTime * 5);
+				camera2.transform.position = Vector3.Lerp(camera2.transform.position, midPoint2 + new Vector3(0, 13, -10), Time.deltaTime * 5);
 				Quaternion newRot2 = Quaternion.LookRotation(midPoint2 - camera2.transform.position);
 				camera2.transform.rotation = Quaternion.Lerp(camera2.transform.rotation, newRot2, Time.deltaTime * 5);
 			}
