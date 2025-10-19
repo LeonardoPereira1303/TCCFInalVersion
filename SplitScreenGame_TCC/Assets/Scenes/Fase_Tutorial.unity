@@ -3174,7 +3174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182221401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.7}
+  m_LocalPosition: {x: 0, y: 1, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11000,12 +11000,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 1130590163}
-  moveSpeed: 7
+  KitchenObjectHoldPoint: {fileID: 182221402}
   counterLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  KitchenObjectHoldPoint: {fileID: 182221402}
   trailRenderer: {fileID: 2146514750}
+  animator: {fileID: 2146514751}
+  moveSpeed: 7
   dashDistance: 2
   dashCooldown: 0.5
 --- !u!4 &665508258
@@ -21536,9 +21537,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
         type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 95625e15d5120704d809ba101d13bdc8, type: 3}
+    - target: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d149565b6cbc2f48aeaa9c658f1801d, type: 2}
     - target: {fileID: 6170603980586114030, guid: 1c5dda3c7cd3cf742afcade5419faeab,
         type: 3}
       propertyPath: m_Time
@@ -26669,12 +26680,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 1822480182}
-  moveSpeed: 7
+  KitchenObjectHoldPoint: {fileID: 2047301278}
   counterLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  KitchenObjectHoldPoint: {fileID: 2047301278}
   trailRenderer: {fileID: 287680072}
+  animator: {fileID: 0}
+  moveSpeed: 7
   dashDistance: 2
   dashCooldown: 0.5
 --- !u!4 &1642486118
@@ -31696,7 +31708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047301277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.7}
+  m_LocalPosition: {x: 0, y: 1, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33330,6 +33342,12 @@ Canvas:
 --- !u!96 &2146514750 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 6170603980586114030, guid: 1c5dda3c7cd3cf742afcade5419faeab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1315816198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2146514751 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
     type: 3}
   m_PrefabInstance: {fileID: 1315816198}
   m_PrefabAsset: {fileID: 0}
