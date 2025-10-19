@@ -6313,6 +6313,12 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!95 &287680073 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6024899996280613204, guid: a18055a1c65089143b0174db6df92514,
+    type: 3}
+  m_PrefabInstance: {fileID: 795924688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287779882
 GameObject:
   m_ObjectHideFlags: 0
@@ -14153,12 +14159,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 1130590163}
-  moveSpeed: 7
+  KitchenObjectHoldPoint: {fileID: 182221402}
   counterLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  KitchenObjectHoldPoint: {fileID: 182221402}
   trailRenderer: {fileID: 2146514750}
+  animator: {fileID: 2146514751}
+  moveSpeed: 7
   dashDistance: 2
   dashCooldown: 0.5
 --- !u!4 &665508258
@@ -27007,7 +27014,7 @@ PrefabInstance:
     - target: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6170603980586114030, guid: 1c5dda3c7cd3cf742afcade5419faeab,
         type: 3}
@@ -33503,12 +33510,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 1822480182}
-  moveSpeed: 7
+  KitchenObjectHoldPoint: {fileID: 2047301278}
   counterLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  KitchenObjectHoldPoint: {fileID: 2047301278}
   trailRenderer: {fileID: 287680072}
+  animator: {fileID: 287680073}
+  moveSpeed: 7
   dashDistance: 2
   dashCooldown: 0.5
 --- !u!4 &1642486118
@@ -43352,6 +43360,12 @@ Canvas:
 --- !u!96 &2146514750 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 6170603980586114030, guid: 1c5dda3c7cd3cf742afcade5419faeab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1315816198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2146514751 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6024899996280613204, guid: 1c5dda3c7cd3cf742afcade5419faeab,
     type: 3}
   m_PrefabInstance: {fileID: 1315816198}
   m_PrefabAsset: {fileID: 0}
