@@ -1,0 +1,192 @@
+fileFormatVersion: 2
+guid: 95625e15d5120704d809ba101d13bdc8
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Chibi_Inventora_Animations(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: Chibi_Inventora_Animations(Clone)
+      position: {x: -0, y: 1.1447585, z: 0.4908751}
+      rotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
+      scale: {x: 50, y: 50, z: 50}
+    - name: Base
+      parentName: Armature
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Neck
+      parentName: Base
+      position: {x: -0, y: 0.01, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Head
+      parentName: Neck
+      position: {x: -0, y: 0.011154056, z: -5.9604643e-10}
+      rotation: {x: -0.0000000022901707, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: NurbsPath.001
+      parentName: Head
+      position: {x: -0, y: -0.034049235, z: -0.00018249848}
+      rotation: {x: -0.000000019454022, y: 0.000000010396161, z: 0.7071067, w: 0.7071068}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Baly
+      parentName: Base
+      position: {x: -0, y: 0.01, z: 0}
+      rotation: {x: 0.7071067, y: 0.000000030908613, z: 0.00000003090861, w: 0.7071068}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Pelvis
+      parentName: Baly
+      position: {x: -0, y: 0.008805836, z: 0}
+      rotation: {x: -3.5527135e-15, y: 7.1054274e-15, z: -2.5243552e-29, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Knee.L
+      parentName: Armature
+      position: {x: -0.0053813444, y: -0.017513825, z: 0.01}
+      rotation: {x: 1, y: -2.6521305e-23, z: 0.00000043312576, w: 6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot.L
+      parentName: Knee.L
+      position: {x: -2.7818145e-10, y: 0.007240355, z: 1.0677354e-10}
+      rotation: {x: -0.7071068, y: -0.00000005338509, z: -0.00000055914734, w: 0.7071067}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Sholder.L
+      parentName: Armature
+      position: {x: -0.013865502, y: 0.006172868, z: 0.010000003}
+      rotation: {x: 1, y: -0.000000022351744, z: 0.00000002235174, w: 0.00000013315805}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand.L
+      parentName: Sholder.L
+      position: {x: 3.4633274e-10, y: 0.0069833654, z: 4.0268072e-10}
+      rotation: {x: 2.2204476e-16, y: 3.449083e-15, z: -5.4771977e-16, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Knee.R
+      parentName: Armature
+      position: {x: 0.0053813444, y: -0.017513825, z: 0.01}
+      rotation: {x: 1, y: 2.6521305e-23, z: -0.00000043312576, w: 6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot.R
+      parentName: Knee.R
+      position: {x: 2.7818145e-10, y: 0.007240355, z: 1.0677354e-10}
+      rotation: {x: -0.7071068, y: 0.00000005338509, z: 0.00000055914734, w: 0.7071067}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Sholder.R
+      parentName: Armature
+      position: {x: 0.013865502, y: 0.006172868, z: 0.010000003}
+      rotation: {x: 1, y: -5.551115e-17, z: 5.5511145e-17, w: 0.00000013315805}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand.R
+      parentName: Sholder.R
+      position: {x: -0, y: 0.0069833654, z: 6.119086e-11}
+      rotation: {x: 0, y: -3.5527135e-15, z: -3.1640986e-31, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Foot
+      parentName: Chibi_Inventora_Animations(Clone)
+      position: {x: -0, y: 0.0661423, z: -0.000000012456837}
+      rotation: {x: -4.3297806e-17, y: 0.7071068, z: 0.7071068, w: -4.3297806e-17}
+      scale: {x: 50, y: 50, z: 50}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: Armature
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
