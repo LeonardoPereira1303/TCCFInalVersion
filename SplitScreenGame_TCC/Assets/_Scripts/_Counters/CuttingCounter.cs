@@ -54,48 +54,28 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     public override void InteractAlternate(Player player)
     {
-        if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO()))
-        {
+        if(HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO())){
+            //There is a KitchenObnject here AND it can be cut
+            cuttingProgress++;
+
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
+
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-            StartCoroutine(AutoCutCoroutine(cuttingRecipeSO));
-        }
-    }
 
-    private IEnumerator AutoCutCoroutine(CuttingRecipeSO cuttingRecipeSO)
-    {
-        // Bloqueia novas interações enquanto corta
-        bool isCutting = true;
-
-        float cutDuration = 1f; // tempo em segundos para cortar (ajuste como quiser)
-        float timer = 0f;
-
-        while (timer < cutDuration)
-        {
-            timer += Time.deltaTime;
-            float progressNormalized = Mathf.Clamp01(timer / cutDuration);
-
-            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-            {
-                progressNormalized = progressNormalized
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+                progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
             });
 
-            yield return null;
+            if(cuttingProgress >= cuttingRecipeSO.cuttingProgressMax){
+                KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
+
+                GetKitchenObject().DestroySelf();
+
+                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
+            }
+
+            
         }
-
-        // Ao final do tempo, gera o item cortado
-        OnAnyCut?.Invoke(this, EventArgs.Empty);
-
-        KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
-        GetKitchenObject().DestroySelf();
-        KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
-
-        // Atualiza o progresso final
-        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-        {
-            progressNormalized = 1f
-        });
-
-        isCutting = false;
     }
 
     private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO){
