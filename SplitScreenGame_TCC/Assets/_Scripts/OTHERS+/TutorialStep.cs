@@ -9,7 +9,8 @@ public class TutorialStep
         Cutting,
         Stove,
         Delivery,
-        Counter
+        Counter,
+        Teleport
     }
 
     public StepType stepType;

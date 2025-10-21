@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class TeleportClearCounter : ClearCounter
 {
+    public static event EventHandler OnAnyTeleport;
+
     [Tooltip("Tempo em segundos para o objeto ser teletransportado")]
     [SerializeField] private float teleportDelay = 3f;
     
@@ -33,6 +36,8 @@ public class TeleportClearCounter : ClearCounter
         {
             KitchenObject kitchenObject = GetKitchenObject();
             kitchenObject.SetKitchenObjectParent(targetCounter);
+
+            OnAnyTeleport?.Invoke(this, EventArgs.Empty);
         }
         
         teleportCoroutine = null;

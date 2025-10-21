@@ -46,9 +46,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
         CuttingCounter.OnAnyCut += HandleCuttingUsed;
         StoveCounter.OnAnyCook += HandleStoveUsed;
         DeliveryManager.Instance.OnRecipeSucess += HandleRecipeDelivered;
-
-        // 👇 Novo evento genérico de balcão (Counter)
         BaseCounter.OnAnyCounterInteracted += HandleCounterInteracted;
+        TeleportClearCounter.OnAnyTeleport += HandleTeleportUsed;
     }
 
     private void OnDestroy() {
@@ -59,8 +58,9 @@ public class TutorialManagerDinamico : MonoBehaviour {
         CuttingCounter.OnAnyCut -= HandleCuttingUsed;
         StoveCounter.OnAnyCook -= HandleStoveUsed;
         DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
-
         BaseCounter.OnAnyCounterInteracted -= HandleCounterInteracted;
+        TeleportClearCounter.OnAnyTeleport -= HandleTeleportUsed;
+
     }
 
     private void SetTutorialActive(bool active) {
@@ -157,4 +157,6 @@ public class TutorialManagerDinamico : MonoBehaviour {
     private void HandleStoveUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Stove);
     private void HandleRecipeDelivered(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Delivery);
     private void HandleCounterInteracted(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Counter);
+    private void HandleTeleportUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Teleport);
+
 }
