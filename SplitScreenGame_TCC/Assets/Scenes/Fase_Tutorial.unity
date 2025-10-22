@@ -400,7 +400,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameInput
       value: 
-      objectReference: {fileID: 1130590163}
+      objectReference: {fileID: 1822480182}
     - target: {fileID: 6655571990845845477, guid: 7e2acae8079b9ab48ae91acb49a19c3a,
         type: 3}
       propertyPath: m_RootOrder
@@ -9540,7 +9540,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameInput
       value: 
-      objectReference: {fileID: 1130590163}
+      objectReference: {fileID: 1822480182}
     - target: {fileID: 6503329829938058935, guid: 83530115a9413da49bf71785ae8790fa,
         type: 3}
       propertyPath: m_RootOrder
