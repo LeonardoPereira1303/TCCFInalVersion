@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6503329829938058935}
   - component: {fileID: 2574551052836139719}
   - component: {fileID: 5036779662066349355}
+  - component: {fileID: 3763276585286467242}
   m_Layer: 6
   m_Name: HolograficTableCounter 1
   m_TagString: Untagged
@@ -148,6 +149,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 7624718926938676363}
   counterVisual: {fileID: 6162111348063908972}
+--- !u!114 &3763276585286467242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494852401606313270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c446ef91fddab489f56fa71d3879ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ffd3eabf2a7fffa40b3371f8763da3c7, type: 2}
 --- !u!1 &3700641478847784400
 GameObject:
   m_ObjectHideFlags: 0
