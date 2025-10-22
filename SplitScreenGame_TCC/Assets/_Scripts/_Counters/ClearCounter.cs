@@ -1,45 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : BaseCounter 
+public class ClearCounter : BaseCounter
 {
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
+    public override void Interact(Player player)
+    {
+        //  Importante: dispara o evento global antes de qualquer outra lógica
+        base.Interact(player);
 
-    public override void Interact(Player player){
-        if (!HasKitchenObject()){
-            //There is no KitchenObject here
-            if(player.HasKitchenObject()){
-                //Player is carrying something
+        if (!HasKitchenObject())
+        {
+            // Não há objeto na bancada
+            if (player.HasKitchenObject())
+            {
+                // Jogador coloca item na bancada
                 player.GetKitchenObject().SetKitchenObjectParent(this);
             }
-            else{
-                //Player is not carrying anything
+            else
+            {
+                // Jogador e bancada estão vazios -> nada a fazer
             }
-        } 
-        else {
-            //There is a KitchenObject here
-            if(player.HasKitchenObject()){
-                //Player is carrying something
-                if(player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)){
-                    //Player is holding a Plate
-                    if(plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())){
+        }
+        else
+        {
+            // Há um objeto na bancada
+            if (player.HasKitchenObject())
+            {
+                // Jogador tenta combinar itens (ex: prato + ingrediente)
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
                         GetKitchenObject().DestroySelf();
                     }
                 }
-                else{
-                    //Player is not carrying Plate but something else
-                    if(GetKitchenObject().TryGetPlate(out plateKitchenObject)){
-                        //Counter is holding a Plate
-                        if(plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())){
+                else
+                {
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject))
+                    {
+                        if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO()))
+                        {
                             player.GetKitchenObject().DestroySelf();
                         }
                     }
                 }
-
             }
-            else{
-                //Player is not carrying anything
+            else
+            {
+                // Jogador pega o item da bancada
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
         }

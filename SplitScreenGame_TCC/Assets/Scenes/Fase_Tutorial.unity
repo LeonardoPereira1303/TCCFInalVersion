@@ -15246,6 +15246,10 @@ MonoBehaviour:
     instruction: "Me mande o PARAFUSO atrav\xE9s da mesa de teleporte!!"
     highlightTarget: {fileID: 1847677044}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: Pega ai.
+    highlightTarget: {fileID: 1213909655}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 1
     instruction: Mandei!! Agora utiliza sua MESA DE REPARO para criar a bateria.
     highlightTarget: {fileID: 1421428697}
@@ -15254,14 +15258,26 @@ MonoBehaviour:
     instruction: Manda ela de volta!
     highlightTarget: {fileID: 1213909655}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+  - stepType: 4
+    instruction: "T\xE1 na m\xE3o, parceiro."
+    highlightTarget: {fileID: 1847677044}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 2
     instruction: "Carrega a bateria nos seus CARREGADORES, mas cuidado para ela n\xE3o
       estourar!!"
     highlightTarget: {fileID: 869336027}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: "Coloca a bateria na mesa, n\xE3o deixa cair hein!"
+    highlightTarget: {fileID: 931302044}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 6
-    instruction: "Pegue a bandeja magn\xE9tica e coloque a bateria nela."
+    instruction: "Pegue a bandeja magn\xE9tica."
     highlightTarget: {fileID: 1987765135}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: Coloque a bateria nela.
+    highlightTarget: {fileID: 931302044}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 3
     instruction: Entregando o pedido na BANCADA DE ENTREGA e...
@@ -16257,6 +16273,25 @@ MonoBehaviour:
   storyTexts:
   - Consigo sim!!
   - Pronta para trabalhar em equipe?
+--- !u!1 &931302041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3684441627025612599, guid: a60f75fef697c334ebe8a4a4e9763db5,
+    type: 3}
+  m_PrefabInstance: {fileID: 865271616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &931302044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931302041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c446ef91fddab489f56fa71d3879ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: ffd3eabf2a7fffa40b3371f8763da3c7, type: 2}
 --- !u!1 &931846754
 GameObject:
   m_ObjectHideFlags: 0

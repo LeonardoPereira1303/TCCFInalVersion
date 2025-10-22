@@ -22,7 +22,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     public SelectedCounterVisual CounterVisual { get { return counterVisual; } }
 
    public virtual void Interact(Player player) {
-        Debug.LogError("BaseCounter.Interact()");
+        Debug.Log("BaseCounter.Interact()");
 
         OnAnyCounterInteracted?.Invoke(this, EventArgs.Empty);
    }
