@@ -97,11 +97,18 @@ public class DeliveryManager : MonoBehaviour
     {
         if (currentPhase == null) return;
 
-        // Se estiver congelado e o primeiro pedido ainda não foi entregue, pausa tudo.
+        if (KitchenGameManager.Instance.IsGameOver() || KitchenGameManager.Instance.IsGamePaused())
+            return;
+
+        // 🔒 Impede contagem e spawn antes do jogo começar (antes do Countdown terminar)
+        if (!KitchenGameManager.Instance.IsGamePlaying())
+            return;
+
+        // 🧊 Se a fase estiver congelada e o primeiro pedido ainda não foi entregue, pausa tudo.
         if (currentPhase.freezeTimerOnFirstRecipe && !firstRecipeDelivered)
             return;
 
-        // Atualiza timers dos pedidos
+        // ⏱️ Atualiza timers dos pedidos
         for (int i = waitingRecipeList.Count - 1; i >= 0; i--)
         {
             waitingRecipeList[i].timer -= Time.deltaTime;
@@ -118,39 +125,24 @@ public class DeliveryManager : MonoBehaviour
             }
         }
 
-        // Corrige o problema da terceira fase:
-        // Se o primeiro pedido não foi entregue e não há freeze, o segundo pode surgir automaticamente.
-        if (!secondRecipeSpawned)
+        // 🧮 Controle de spawn dos próximos pedidos
+        spawnRecipeTimer -= Time.deltaTime;
+        if (spawnRecipeTimer <= 0f)
         {
-            spawnRecipeTimer -= Time.deltaTime;
-            if (spawnRecipeTimer <= 0f)
+            spawnRecipeTimer = currentPhase.spawnInterval;
+
+            // ✅ Agora, se o freezeTimer estiver desativado, novos pedidos aparecem mesmo sem entregar o primeiro
+            if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
             {
-                if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
-                {
-                    RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
-                    waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
-                    OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
-                    Debug.Log($"[DeliveryManager] Segundo pedido gerado automaticamente: {recipe.recipeName}");
-                }
+                RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
+                waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+                Debug.Log($"[DeliveryManager] Novo pedido gerado: {recipe.recipeName}");
+            }
+
+            // Marcação para o segundo pedido — usada apenas se for necessário manter lógica antiga
+            if (!secondRecipeSpawned)
                 secondRecipeSpawned = true;
-                spawnRecipeTimer = currentPhase.spawnInterval;
-            }
-        }
-        // Depois do segundo, segue o ciclo normal de geração
-        else
-        {
-            spawnRecipeTimer -= Time.deltaTime;
-            if (spawnRecipeTimer <= 0f)
-            {
-                spawnRecipeTimer = currentPhase.spawnInterval;
-                if (waitingRecipeList.Count < waitingRecipesMax && currentPhase.availableRecipes.Count > 0)
-                {
-                    RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
-                    waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
-                    OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
-                    Debug.Log($"[DeliveryManager] Novo pedido gerado (3+): {recipe.recipeName}");
-                }
-            }
         }
     }
 
