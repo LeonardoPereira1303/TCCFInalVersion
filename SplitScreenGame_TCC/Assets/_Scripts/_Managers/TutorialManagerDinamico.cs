@@ -48,6 +48,12 @@ public class TutorialManagerDinamico : MonoBehaviour {
         DeliveryManager.Instance.OnRecipeSucess += HandleRecipeDelivered;
         BaseCounter.OnAnyCounterInteracted += HandleCounterInteracted;
         TeleportClearCounter.OnAnyTeleport += HandleTeleportUsed;
+        PlatesCounter[] platesCounters = FindObjectsOfType<PlatesCounter>();
+        foreach (PlatesCounter pc in platesCounters)
+        {
+            pc.onPlateRemoved += HandlePlatePicked;
+        }
+
     }
 
     private void OnDestroy() {
@@ -60,7 +66,11 @@ public class TutorialManagerDinamico : MonoBehaviour {
         DeliveryManager.Instance.OnRecipeSucess -= HandleRecipeDelivered;
         BaseCounter.OnAnyCounterInteracted -= HandleCounterInteracted;
         TeleportClearCounter.OnAnyTeleport -= HandleTeleportUsed;
-
+        PlatesCounter[] platesCounters = FindObjectsOfType<PlatesCounter>();
+        foreach (PlatesCounter pc in platesCounters)
+        {
+            pc.onPlateRemoved -= HandlePlatePicked;
+        }
     }
 
     private void SetTutorialActive(bool active) {
@@ -158,5 +168,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
     private void HandleRecipeDelivered(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Delivery);
     private void HandleCounterInteracted(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Counter);
     private void HandleTeleportUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Teleport);
-
+    private void HandlePlatePicked(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.PickPlate);
 }
+
+        
+

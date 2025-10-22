@@ -10,7 +10,8 @@ public class TutorialStep
         Stove,
         Delivery,
         Counter,
-        Teleport
+        Teleport,
+        PickPlate
     }
 
     public StepType stepType;
