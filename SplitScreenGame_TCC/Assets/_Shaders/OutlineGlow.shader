@@ -1,79 +1,70 @@
 Shader "Custom/OutlineGlow_Stronger"
 {
-    Properties
-    {
-        _OutlineColor("Outline Color", Color) = (1,1,0,1)
-        _OutlineWidth("Outline Width", Range(0.0, 0.2)) = 0.05   // Aumentei o limite máximo
+    //show values to edit in inspector
+    Properties {
+        _Color ("Tint", Color) = (0, 0, 0, 1)
+        _MainTex ("Texture", 2D) = "white" {}
+        _Smoothness ("Smoothness", Range(0, 1)) = 0
+        _Metallic ("Metalness", Range(0, 1)) = 0
+        [HDR] _Emission ("Emission", color) = (0,0,0)
 
-        _GlowColor("Glow Color", Color) = (0,1,1,1)
-        _GlowIntensity("Glow Intensity", Range(0,10)) = 3.0       // Intensidade maior
-        _GlowPower("Glow Power", Range(0.1,10)) = 1.5             // Menor power → transição mais suave
-        _GlowSharpness("Glow Sharpness", Range(0.1,10)) = 3.0     // Novo controle para o decaimento
+        _FresnelColor ("Fresnel Color", Color) = (1,1,1,1)
+        [PowerSlider(4)] _FresnelExponent ("Fresnel Exponent", Range(0.25, 4)) = 1
     }
+    SubShader {
+        //the material is completely non-transparent and is rendered at the same time as the other opaque geometry
+        Tags{ "RenderType"="Opaque" "Queue"="Geometry"}
 
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" "Queue"="Overlay" }
-        Cull Front
-        ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha
+        CGPROGRAM
 
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
+        //the shader is a surface shader, meaning that it will be extended by unity in the background to have fancy lighting and other features
+        //our surface shader function is called surf and we use the standard lighting model, which means PBR lighting
+        //fullforwardshadows makes sure unity adds the shadow passes the shader might need
+        #pragma surface surf Standard fullforwardshadows
+        #pragma target 3.0
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-            };
+        sampler2D _MainTex;
+        fixed4 _Color;
 
-            struct v2f
-            {
-                float4 pos : SV_POSITION;
-                float3 worldNormal : TEXCOORD0;
-                float3 viewDir : TEXCOORD1;
-            };
+        half _Smoothness;
+        half _Metallic;
+        half3 _Emission;
 
-            fixed4 _OutlineColor;
-            float _OutlineWidth;
+        float3 _FresnelColor;
+        float _FresnelExponent;
 
-            fixed4 _GlowColor;
-            float _GlowIntensity;
-            float _GlowPower;
-            float _GlowSharpness;
+        //input struct which is automatically filled by unity
+        struct Input {
+            float2 uv_MainTex;
+            float3 worldNormal;
+            float3 viewDir;
+            INTERNAL_DATA
+        };
 
-            v2f vert (appdata v)
-            {
-                v2f o;
+        //the surface shader function which sets parameters the lighting function then uses
+        void surf (Input i, inout SurfaceOutputStandard o) {
+            //sample and tint albedo texture
+            fixed4 col = tex2D(_MainTex, i.uv_MainTex);
+            col *= _Color;
+            o.Albedo = col.rgb;
 
-                // Expande o modelo no sentido da normal — outline visivelmente mais espesso
-                float3 worldNormal = UnityObjectToWorldNormal(v.normal);
-                float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz + worldNormal * _OutlineWidth * 1.5;
+            //just apply the values for metalness and smoothness
+            o.Metallic = _Metallic;
+            o.Smoothness = _Smoothness;
 
-                o.pos = mul(UNITY_MATRIX_VP, float4(worldPos,1.0));
-                o.worldNormal = worldNormal;
-                o.viewDir = normalize(_WorldSpaceCameraPos - worldPos);
-
-                return o;
-            }
-
-            fixed4 frag (v2f i) : SV_Target
-            {
-                // Fresnel ajustado para brilho mais intenso e suave
-                float fresnel = pow(1.0 - saturate(dot(normalize(i.worldNormal), normalize(i.viewDir))), _GlowPower);
-                float glow = pow(fresnel, _GlowSharpness) * _GlowIntensity;
-
-                fixed4 col = _OutlineColor;
-                col.rgb = lerp(col.rgb, _GlowColor.rgb, glow); // mistura suave entre cor e glow
-                col.a = saturate(_OutlineColor.a + glow * 0.7);
-
-                return col;
-            }
-            ENDCG
+            //get the dot product between the normal and the view direction
+            float fresnel = dot(i.worldNormal, i.viewDir);
+            //invert the fresnel so the big values are on the outside
+            fresnel = saturate(1 - fresnel);
+            //raise the fresnel value to the exponents power to be able to adjust it
+            fresnel = pow(fresnel, _FresnelExponent);
+            //combine the fresnel value with a color
+            float3 fresnelColor = fresnel * _FresnelColor;
+            //apply the fresnel value to the emission
+            o.Emission = _Emission + fresnelColor;
         }
+        ENDCG
     }
+    FallBack "Standard"
 }
+
