@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761095984
+  lastShownTimestamp: 1761234199
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761095984
+  checkedLastUpdateTimestamp: 1761234199
   lastQOTDResponse:
-    questionId: 233
-    questionText: Can you modify transform.forward directly to rotate a transform?
-    answerA: Yes
-    answerB: No
-    answerC: 
-    answerD: 
+    questionId: 234
+    questionText: Which namespace do we need to use File.WriteAllText()?
+    answerA: using System;
+    answerB: using UnityEngine;
+    answerC: using System.IO;
+    answerD: using UnityEngine.UI;
     answerE: 
-  lastQotdTimestamp: 1761095984
+  lastQotdTimestamp: 1761234199
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: AWESOME Low Poly Synty Bundle 97% OFF! Don't MISS it!
@@ -35,11 +35,11 @@ MonoBehaviour:
     bottomText: DONT MISS the latest important trends, sign up for my FREE Weekly
       Newsletter!
     bottomLink: gamedevreport
-  lastDynamicHeaderTimestamp: 1761095984
+  lastDynamicHeaderTimestamp: 1761234199
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761095984
+  websiteLatestMessageTimestamp: 1761234199
   websiteLatestVideos:
     videos:
     - youTubeId: arIZP7op9WQ
@@ -50,4 +50,4 @@ MonoBehaviour:
       title: TOP 10 FREE NEW Assets OCTOBER 2025!
     - youTubeId: 6jjwMLflLOU
       title: This AWESOME Tool MULTIPLIES all your assets!
-  websiteLatestVideosTimestamp: 1761095984
+  websiteLatestVideosTimestamp: 1761234199
