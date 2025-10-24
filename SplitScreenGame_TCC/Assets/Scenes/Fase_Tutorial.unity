@@ -2045,7 +2045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182221401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.7}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5124,7 +5124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439058237}
   m_LocalRotation: {x: 0, y: 0.9896514, z: -0.14349268, w: 0}
-  m_LocalPosition: {x: -0.86, y: 17.02, z: 35.07}
+  m_LocalPosition: {x: -0.86, y: 9.43, z: 37.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5144,7 +5144,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.86819744, b: 0.24056602, a: 1}
   m_Intensity: 4
-  m_Range: 99
+  m_Range: 105
   m_SpotAngle: 41.2
   m_InnerSpotAngle: 7
   m_CookieSize: 10
@@ -9100,7 +9100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814746591}
   m_LocalRotation: {x: -0.14349268, y: -0, z: -0, w: -0.9896514}
-  m_LocalPosition: {x: -1.06, y: 16.93, z: -35.07}
+  m_LocalPosition: {x: -1.06, y: 11.9, z: -36.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9120,7 +9120,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0, g: 0.11251116, b: 1, a: 1}
   m_Intensity: 4
-  m_Range: 100
+  m_Range: 105
   m_SpotAngle: 41.2
   m_InnerSpotAngle: 7
   m_CookieSize: 10
@@ -10028,11 +10028,19 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
     instruction: Coloque a bateria nela.
-    highlightTarget: {fileID: 1141527350307869024}
+    highlightTarget: {fileID: 1984358413}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
-  - stepType: 4
+  - stepType: 0
     instruction: "Manda o PNEU tamb\xE9m"
     highlightTarget: {fileID: 2063029758}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+  - stepType: 5
+    instruction: Mandando
+    highlightTarget: {fileID: 357053973}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: Pegando...
+    highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 3
     instruction: Entregando o pedido na BANCADA DE ENTREGA e...
@@ -23112,7 +23120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047301277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.7}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24488,7 +24496,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!96 &2146514750 stripped
 TrailRenderer:

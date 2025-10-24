@@ -25,21 +25,23 @@ public class MenuLoader : MonoBehaviour
 
     private IEnumerator LoadLevelAsync(string levelToLoad)
     {
+        Time.timeScale = 1f;
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
-        loadOperation.allowSceneActivation = false; // só libera quando a barra terminar
+        loadOperation.allowSceneActivation = false;
 
         float elapsedTime = 0f;
 
-        // Simula a barra enchendo em tempo fixo
+        // Usa unscaledDeltaTime para ignorar pausas
         while (elapsedTime < fakeLoadTime)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             loadingSlider.value = Mathf.Clamp01(elapsedTime / fakeLoadTime);
             yield return null;
         }
 
-        // Ao terminar, ativa a cena
         loadOperation.allowSceneActivation = true;
+
     }
 
     public void ExitGame()

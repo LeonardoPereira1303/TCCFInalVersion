@@ -283,6 +283,8 @@ MonoBehaviour:
   visualGameObjectArray:
   - {fileID: 1177490217113137610}
   - {fileID: 2790202979156386015}
+  iconDefault: {fileID: 0}
+  iconWithObject: {fileID: 0}
 --- !u!1 &8307542977423924361
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +297,7 @@ GameObject:
   - component: {fileID: 5741624892132657558}
   - component: {fileID: 7515010392142871900}
   - component: {fileID: 3548499634684978809}
+  - component: {fileID: 3336799630965447945}
   m_Layer: 0
   m_Name: HandcartCounter
   m_TagString: Untagged
@@ -345,7 +348,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5270721692746418443, guid: d6ad7f940af8c42488d8c59864e6c6bf, type: 3}
+  - {fileID: 2100000, guid: 8ff5a188bf66eb846bd53b0ae2e32950, type: 2}
   - {fileID: -7805965318761107941, guid: d6ad7f940af8c42488d8c59864e6c6bf, type: 3}
   - {fileID: 7369649379789013516, guid: d6ad7f940af8c42488d8c59864e6c6bf, type: 3}
   - {fileID: 38898066840587952, guid: d6ad7f940af8c42488d8c59864e6c6bf, type: 3}
@@ -386,6 +389,27 @@ MonoBehaviour:
   counterTopPoint: {fileID: 2687506144829440873}
   plateVisualPrefab: {fileID: 5241407858319515669, guid: 08be5425d202275469531b0850bc47f8,
     type: 3}
+--- !u!95 &3336799630965447945
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307542977423924361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8cbdb35e83be1943bdde616d69cce85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8382277582532747083
 GameObject:
   m_ObjectHideFlags: 0
