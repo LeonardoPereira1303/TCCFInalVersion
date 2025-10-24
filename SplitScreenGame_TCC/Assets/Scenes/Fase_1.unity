@@ -6231,9 +6231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowUI: {fileID: 496233194}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  camera1: {fileID: 0}
+  player1: {fileID: 665508258}
+  player2: {fileID: 1642486118}
+  camera1: {fileID: 447236131}
   camera2: {fileID: 0}
 --- !u!114 &496233196
 MonoBehaviour:
@@ -24968,9 +24968,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cbcd158dc5ff447a29332c5c39b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  camera1: {fileID: 0}
+  player1: {fileID: 665508258}
+  player2: {fileID: 1642486118}
+  camera1: {fileID: 447236131}
   camera2: {fileID: 0}
   arrowHeight: 2
   offsetFromTarget: 1.5
