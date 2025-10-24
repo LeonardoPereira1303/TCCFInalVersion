@@ -12884,6 +12884,10 @@ MonoBehaviour:
     instruction: "Utilizando Mesa de Teletransporte para passar o item para voc\xEA..."
     highlightTarget: {fileID: 1181302835}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+  - stepType: 4
+    instruction: Pega na bancada ae
+    highlightTarget: {fileID: 2101147988}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 1
     instruction: Conserta esse painel na sua MESA DE REPARO e manda para mim por
       favor
@@ -12894,12 +12898,28 @@ MonoBehaviour:
     highlightTarget: {fileID: 2101147988}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
+    instruction: Pegando de volta
+    highlightTarget: {fileID: 1181302835}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
     instruction: Deixa nessa mesa aqui
     highlightTarget: {fileID: 1103329132}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 6
-    instruction: Pega a bandeja e coloca o painel aqui
+    instruction: Pega a bandeja e manda para mim
     highlightTarget: {fileID: 1452858846}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+  - stepType: 5
+    instruction: Teleportando Bandeja
+    highlightTarget: {fileID: 2101147988}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: Pega a Bandeja
+    highlightTarget: {fileID: 1181302835}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: Coloca o painel nessa bandeja
+    highlightTarget: {fileID: 1103329132}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 3
     instruction: Agora entrega na BANCADA DE ENTREGA
@@ -12936,10 +12956,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
