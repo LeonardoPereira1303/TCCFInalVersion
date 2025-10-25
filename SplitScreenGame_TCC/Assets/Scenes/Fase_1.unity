@@ -4935,7 +4935,7 @@ PrefabInstance:
     - target: {fileID: 6126906063130348755, guid: 4003b497b53960f4b8f584a57b69b189,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.537422
+      value: -9.41
       objectReference: {fileID: 0}
     - target: {fileID: 6126906063130348755, guid: 4003b497b53960f4b8f584a57b69b189,
         type: 3}
@@ -11607,7 +11607,7 @@ PrefabInstance:
     - target: {fileID: 2387352530954491841, guid: 8a63aaa80ba622d47904d4e71203fe1b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2387352530954491841, guid: 8a63aaa80ba622d47904d4e71203fe1b,
         type: 3}
@@ -17685,6 +17685,12 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 1130590163}
+    - target: {fileID: 6656163394907604570, guid: d3857ca8a9f3a994983423ad718f53af,
+        type: 3}
+      propertyPath: cuttingVFXPrefab
+      value: 
+      objectReference: {fileID: 8487402871801164198, guid: 90375796f996bff4cabed66da5e558cb,
+        type: 3}
     - target: {fileID: 7314008616725425763, guid: d3857ca8a9f3a994983423ad718f53af,
         type: 3}
       propertyPath: m_RootOrder

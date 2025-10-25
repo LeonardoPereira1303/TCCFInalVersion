@@ -11,42 +11,48 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject cuttingVFXPrefab; // Prefab do efeito (ex: CFX_Hit)
+    [SerializeField] private Transform vfxSpawnPoint; // Local opcional de spawn
+    [SerializeField] private float vfxDuration = 1f; // Tempo que o VFX fica ativo
+    [SerializeField] private float vfxScale = 0.5f; // Escala reduzida do efeito
+
     private int cuttingProgress;
 
     public override void Interact(Player player)
     {
-        if (!HasKitchenObject()){
-            //There is no KitchenObject here
-            if(player.HasKitchenObject()){
-                //Player is carrying something
-                if(HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO())){
+        if (!HasKitchenObject())
+        {
+            if (player.HasKitchenObject())
+            {
+                if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
+                {
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     cuttingProgress = 0;
 
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
-                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
                         progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                     });
                 }
             }
-            else{
-                //Player is not carrying anything
-            }
-        } 
-        else {
-            //There is a KitchenObject here
-            if(player.HasKitchenObject()){
-                //Player is carrying something
-                if(player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)){
-                    //Player is holding a Plate
-                    if(plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())){
+        }
+        else
+        {
+            if (player.HasKitchenObject())
+            {
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
                         GetKitchenObject().DestroySelf();
                     }
                 }
             }
-            else{
-                //Player is not carrying anything
+            else
+            {
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
         }
@@ -54,31 +60,41 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     public override void InteractAlternate(Player player)
     {
-        if(HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO())){
-            //There is a KitchenObnject here AND it can be cut
+        if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO()))
+        {
             cuttingProgress++;
 
             OnAnyCut?.Invoke(this, EventArgs.Empty);
 
+            // --- Ativar VFX de corte ---
+            if (cuttingVFXPrefab != null)
+            {
+                Vector3 spawnPos = vfxSpawnPoint != null ? vfxSpawnPoint.position : transform.position + Vector3.up * 0.7f;
+                GameObject vfxInstance = Instantiate(cuttingVFXPrefab, spawnPos, Quaternion.identity);
+                vfxInstance.transform.localScale *= vfxScale; // reduz o tamanho do VFX
+                Destroy(vfxInstance, vfxDuration); // remove após o tempo configurado
+            }
+
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
-            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+            {
                 progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
             });
 
-            if(cuttingProgress >= cuttingRecipeSO.cuttingProgressMax){
+            if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
+            {
                 KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
 
                 GetKitchenObject().DestroySelf();
 
                 KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
             }
-
-            
         }
     }
 
-    private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO){
+    private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO)
+    {
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(inputKitchenObjectSO);
         return cuttingRecipeSO != null;
     }
@@ -87,10 +103,12 @@ public class CuttingCounter : BaseCounter, IHasProgress
     {
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(inputKitchenObjectSO);
 
-        if(cuttingRecipeSO != null){
+        if (cuttingRecipeSO != null)
+        {
             return cuttingRecipeSO.output;
         }
-        else{
+        else
+        {
             return null;
         }
     }
@@ -106,6 +124,5 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
 
         return null;
-
     }
 }

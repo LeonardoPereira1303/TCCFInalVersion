@@ -653,6 +653,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasProgressGameObject: {fileID: 4595757541108014930}
   barImage: {fileID: 6135828448953794374}
+--- !u!1 &3778890819387445974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6020959479969684364}
+  m_Layer: 6
+  m_Name: VFXSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6020959479969684364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778890819387445974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 0.94, z: -0.48}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6126906063130348755}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3826068736409280921
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +752,7 @@ Transform:
   - {fileID: 3474484625090222825}
   - {fileID: 5749779542145230553}
   - {fileID: 3814364329946378120}
+  - {fileID: 6020959479969684364}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -768,6 +800,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f82f12c97283104419868e211e7813c0, type: 2}
   burningRecipeSOArray:
   - {fileID: 11400000, guid: 2fae9b97748061d43ace460fcf9271f0, type: 2}
+  burnVFXPrefab: {fileID: 1141330259687333427, guid: 6718dc24203da53468af9ada8fef7d6d,
+    type: 3}
+  vfxSpawnPoint: {fileID: 6020959479969684364}
+  vfxDuration: 1.5
+  vfxScale: 0.7
 --- !u!1 &4821865546184601615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1301,8 @@ MonoBehaviour:
   - {fileID: 956503369029775524}
   - {fileID: 7329331108075070098}
   - {fileID: 1895176079619937636}
+  iconDefault: {fileID: 0}
+  iconWithObject: {fileID: 0}
 --- !u!1 &8351929677278902100
 GameObject:
   m_ObjectHideFlags: 0
