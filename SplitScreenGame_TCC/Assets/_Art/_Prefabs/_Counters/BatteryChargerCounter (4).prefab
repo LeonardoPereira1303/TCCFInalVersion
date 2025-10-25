@@ -119,7 +119,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 28dd9c3c384824a44af6ff5808e69119, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e07c32afc2f6c4489b36ac94c0df698, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoveCounter: {fileID: 6343585836637670720}
+  audioClipRefsSO: {fileID: 11400000, guid: 3aed9c7c55c78824d85163b87f3aeecc, type: 2}
 --- !u!1 &956503369029775524
 GameObject:
   m_ObjectHideFlags: 0

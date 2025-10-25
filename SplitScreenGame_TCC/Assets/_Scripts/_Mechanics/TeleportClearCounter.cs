@@ -18,24 +18,26 @@ public class TeleportClearCounter : ClearCounter
     [SerializeField] private float vfxDuration = 1.2f; // Duração do efeito
     [SerializeField] private float vfxScale = 0.6f; // Escala reduzida do efeito
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip teleportSound; // Som do teletransporte
+    [SerializeField] private float teleportSoundVolume = 0.7f; // Volume do som
+
     private Coroutine teleportCoroutine;
 
     public override void Interact(Player player)
     {
-        // Verifica se o jogador está segurando algo
-        bool playerHasObject = player.HasKitchenObject();
+        bool playerHadObject = player.HasKitchenObject();
 
-        // Chama a lógica padrão do ClearCounter (colocar ou pegar objeto)
+        // Executa a interação padrão (coloca ou pega o item)
         base.Interact(player);
 
-        // Se o jogador estava segurando algo e colocou o item na bancada,
-        // agora a bancada passa a ter um KitchenObject
-        if (playerHasObject && HasKitchenObject())
+        // Se o jogador colocou um item na bancada
+        if (playerHadObject && HasKitchenObject())
         {
-            // Ativar VFX no momento que o item é colocado
+            // VFX no momento que o item é colocado
             SpawnTeleportVFX();
 
-            // Inicia a contagem para o teleporte (como antes)
+            // Inicia a coroutine do teleporte
             if (teleportCoroutine == null)
             {
                 teleportCoroutine = StartCoroutine(TeleportAfterDelay());
@@ -47,19 +49,21 @@ public class TeleportClearCounter : ClearCounter
     {
         yield return new WaitForSeconds(teleportDelay);
 
-        // Teleporta o objeto, se ainda existir e o destino estiver livre
         if (HasKitchenObject() && targetCounter != null && !targetCounter.HasKitchenObject())
         {
             KitchenObject kitchenObject = GetKitchenObject();
             kitchenObject.SetKitchenObjectParent(targetCounter);
 
-            // VFX nas duas bancadas: origem e destino
+            // VFX de teleporte na origem e destino
             SpawnTeleportVFX();
 
             if (targetCounter is TeleportClearCounter destinationTeleport)
             {
                 destinationTeleport.SpawnTeleportVFX();
             }
+
+            // 🎵 Tocar som de teletransporte
+            PlayTeleportSound();
 
             OnAnyTeleport?.Invoke(this, EventArgs.Empty);
         }
@@ -75,5 +79,14 @@ public class TeleportClearCounter : ClearCounter
         GameObject vfxInstance = Instantiate(teleportVFXPrefab, spawnPos, Quaternion.identity);
         vfxInstance.transform.localScale *= vfxScale;
         Destroy(vfxInstance, vfxDuration);
+    }
+
+    private void PlayTeleportSound()
+    {
+        if (teleportSound != null)
+        {
+            Vector3 soundPos = vfxSpawnPoint != null ? vfxSpawnPoint.position : transform.position;
+            AudioSource.PlayClipAtPoint(teleportSound, soundPos, teleportSoundVolume);
+        }
     }
 }

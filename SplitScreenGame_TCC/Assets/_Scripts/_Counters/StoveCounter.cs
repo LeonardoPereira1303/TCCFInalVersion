@@ -7,6 +7,14 @@ public class StoveCounter : BaseCounter, IHasProgress
 {
     public static event EventHandler OnAnyCook;
 
+    // ðŸ”¥ Novo evento global para som
+    public static event EventHandler<OnAnyStoveStateChangedEventArgs> OnAnyStoveStateChanged;
+    public class OnAnyStoveStateChangedEventArgs : EventArgs
+    {
+        public State state;
+        public Vector3 position;
+    }
+
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
@@ -26,10 +34,10 @@ public class StoveCounter : BaseCounter, IHasProgress
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
 
     [Header("VFX - Queimado")]
-    [SerializeField] private GameObject burnVFXPrefab; // Efeito de explosão / curto
-    [SerializeField] private Transform vfxSpawnPoint;  // Ponto opcional para spawnar
-    [SerializeField] private float vfxDuration = 1.5f; // Tempo que o VFX permanece
-    [SerializeField] private float vfxScale = 0.7f;    // Escala reduzida do efeito
+    [SerializeField] private GameObject burnVFXPrefab;
+    [SerializeField] private Transform vfxSpawnPoint;
+    [SerializeField] private float vfxDuration = 1.5f;
+    [SerializeField] private float vfxScale = 0.7f;
 
     private State state;
     private float fryingTimer;
@@ -41,6 +49,7 @@ public class StoveCounter : BaseCounter, IHasProgress
     {
         state = State.Idle;
         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+        OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
     }
 
     private void Update()
@@ -62,12 +71,12 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                     if (fryingTimer > fryingRecipeSO.fryingTimerMax)
                     {
-                        // Transform into Fried
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
 
                         state = State.Fried;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                        OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
 
                         burningTimer = 0f;
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
@@ -86,19 +95,19 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                     if (burningTimer > burningRecipeSO.burningTimerMax)
                     {
-                        // Transform into Burned
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this);
 
                         state = State.Burned;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                        OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
 
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
                             progressNormalized = 0f
                         });
 
-                        // --- Ativar VFX de explosão/curto-circuito ---
+                        // --- Ativar VFX de explosÃ£o/curto-circuito ---
                         if (burnVFXPrefab != null)
                         {
                             Vector3 spawnPos = vfxSpawnPoint != null ? vfxSpawnPoint.position : transform.position + Vector3.up * 0.6f;
@@ -131,6 +140,8 @@ public class StoveCounter : BaseCounter, IHasProgress
                     fryingTimer = 0f;
 
                     OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                    OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
+
                     OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                     {
                         progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
@@ -150,6 +161,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                         state = State.Idle;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                        OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
 
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                         {
@@ -164,6 +176,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                 state = State.Idle;
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                OnAnyStoveStateChanged?.Invoke(this, new OnAnyStoveStateChangedEventArgs { state = state, position = transform.position });
 
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {

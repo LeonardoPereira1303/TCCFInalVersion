@@ -15,13 +15,14 @@ public class SoundManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         DeliveryManager.Instance.OnRecipeSucess += DeliveryManager_OnRecipeSucess;
         DeliveryManager.Instance.OnRecipeFailed += DeliveryManager_OnRecipeFailed;
         CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
         BaseCounter.OnAnyObjectPlacedHere += BaseCounter_OnAnyObjectPlacedHere;
         TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;
+        StoveCounter.OnAnyStoveStateChanged += StoveCounter_OnAnyStoveStateChanged; // ðŸ”¥ novo evento
 
         // Localiza o Player na cena
         Player player = FindObjectOfType<Player>();
@@ -31,7 +32,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Player não encontrado na cena.");
+            Debug.LogWarning("Player nÃ£o encontrado na cena.");
         }
     }
 
@@ -49,7 +50,6 @@ public class SoundManager : MonoBehaviour
 
     private void Player_OnPickedSomething(object sender, EventArgs e)
     {
-        // Se o sender for o próprio Player, podemos usá-lo para obter a posição
         if (sender is Player player)
         {
             PlaySound(audioClipRefsSO.objectPickup, player.transform.position);
@@ -59,7 +59,7 @@ public class SoundManager : MonoBehaviour
     private void CuttingCounter_OnAnyCut(object sender, EventArgs e)
     {
         CuttingCounter cuttingCounter = sender as CuttingCounter;
-        PlaySound(audioClipRefsSO.chop, cuttingCounter.transform.position);
+        PlaySound(audioClipRefsSO.repair, cuttingCounter.transform.position);
     }
 
     private void DeliveryManager_OnRecipeFailed(object sender, EventArgs e)
@@ -72,6 +72,25 @@ public class SoundManager : MonoBehaviour
     {
         DeliveryCounter deliveryCounter = DeliveryCounter.Instance;
         PlaySound(audioClipRefsSO.deliverySuccess, deliveryCounter.transform.position);
+    }
+
+    // ðŸ”¥ Novo: som do fogÃ£o conforme estado
+    private void StoveCounter_OnAnyStoveStateChanged(object sender, StoveCounter.OnAnyStoveStateChangedEventArgs e)
+    {
+        switch (e.state)
+        {
+            case StoveCounter.State.Frying:
+                PlaySound(audioClipRefsSO.stoveFrying, e.position);
+                break;
+
+            case StoveCounter.State.Burned:
+                PlaySound(audioClipRefsSO.stoveBurned, e.position);
+                break;
+
+            default:
+                // Idle: sem som
+                break;
+        }
     }
 
     public void PlayDashSound(Vector3 position)
@@ -91,16 +110,15 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f){
+    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
+    {
+        if (audioClipArray == null || audioClipArray.Length == 0) return;
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
-    private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f){
+    private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
+    {
+        if (audioClip == null) return;
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
     }
-
-    //public void PlayFootstepsSound(Vector3 position, float volume)
-    //{
-    //    PlaySound(audioClipRefsSO.footstep, position, volume);
-    //}
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 public class StoveCounterSound : MonoBehaviour
 {
     [SerializeField] private StoveCounter stoveCounter;
+    [SerializeField] private AudioClipRefsSO audioClipRefsSO;
+
     private AudioSource audioSource;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.loop = true; // som contínuo
+        audioSource.loop = true; // som contínuo para o fritar
     }
 
     private void Start()
@@ -19,19 +21,54 @@ public class StoveCounterSound : MonoBehaviour
 
     private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
     {
-        if (e.state == StoveCounter.State.Frying || e.state == StoveCounter.State.Fried)
+        switch (e.state)
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            case StoveCounter.State.Frying:
+                PlayLoop(audioClipRefsSO.chargerSizzle); // som contínuo de fritura
+                break;
+
+            case StoveCounter.State.Burned:
+                StopLoop();
+                PlayRandom(audioClipRefsSO.warning); // som aleatório de queimado
+                break;
+
+            default:
+                StopLoop();
+                break;
         }
-        else
-        {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-        }
+    }
+
+    private void PlayLoop(AudioClip clip)
+    {
+        if (clip == null) return;
+        audioSource.clip = clip;
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+    }
+
+    private void StopLoop()
+    {
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+    }
+
+    private void PlayOneShot(AudioClip[] clips)
+    {
+        if (clips == null || clips.Length == 0) return;
+        AudioClip clip = clips[UnityEngine.Random.Range(0, clips.Length)];
+        audioSource.PlayOneShot(clip);
+    }
+
+    private void PlayOneShot(AudioClip clip)
+    {
+        if (clip == null) return;
+        audioSource.PlayOneShot(clip);
+    }
+
+    private void PlayRandom(AudioClip[] clips)
+    {
+        if (clips == null || clips.Length == 0) return;
+        AudioClip clip = clips[UnityEngine.Random.Range(0, clips.Length)];
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 }

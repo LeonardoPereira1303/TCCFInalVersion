@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class AudioClipRefsSO : ScriptableObject
 {
-    public AudioClip[] chop;
+    public AudioClip[] repair;
     public AudioClip[] deliveryFail;
     public AudioClip[] deliverySuccess;
     public AudioClip[] footstep;
@@ -16,5 +16,7 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip[] warning;
     public AudioClip[] dash;
     public AudioClip countdown;
+    public AudioClip stoveFrying;
+    public AudioClip stoveBurned;
 
 }

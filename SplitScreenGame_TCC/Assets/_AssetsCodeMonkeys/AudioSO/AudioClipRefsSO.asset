@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c72da2b50b6144bb66783b65209cc, type: 3}
   m_Name: AudioClipRefsSO
   m_EditorClassIdentifier: 
-  chop:
-  - {fileID: 8300000, guid: aca35b9a5d3c5ec42aa98e11f67c316e, type: 3}
+  repair:
+  - {fileID: 8300000, guid: f82932f5ecae57a46af7d9c8747c7149, type: 3}
   deliveryFail:
   - {fileID: 8300000, guid: 400611abd7434234993616a86c030d1e, type: 3}
   - {fileID: 8300000, guid: 6a936576e1e30a640844535c71d5a149, type: 3}
   deliverySuccess:
   - {fileID: 8300000, guid: 50205ffe58351d244bbcbd725dbfa802, type: 3}
   - {fileID: 8300000, guid: 4b22bfbdbacfa0445bc9bbfbb0141085, type: 3}
-  - {fileID: 8300000, guid: 6f262ac54dbad584e8272f0846dc6aa5, type: 3}
+  - {fileID: 8300000, guid: 0905c71a19ba79345ac22ff59265cf32, type: 3}
   footstep:
   - {fileID: 8300000, guid: 078e15982fce2e147bf06c8a7682f28b, type: 3}
   objectDrop:
@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 668de61a04ca5914aa745f8712c62720, type: 3}
   - {fileID: 8300000, guid: 6728bf8b07482414e99ba965fdd022d8, type: 3}
   - {fileID: 8300000, guid: 32d29abc86751884081d2005f9ff2676, type: 3}
-  chargerSizzle: {fileID: 8300000, guid: 28dd9c3c384824a44af6ff5808e69119, type: 3}
+  chargerSizzle: {fileID: 0}
   trash:
   - {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
   - {fileID: 8300000, guid: 6024ba1d53d005f48a96b3a9f6bacedd, type: 3}
@@ -39,5 +39,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
   - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
   dash:
-  - {fileID: 8300000, guid: 4a87e605a7a01bd499abe2a0e2857829, type: 3}
-  countdown: {fileID: 8300000, guid: 9c00e6a7165ee5946b057d6e46df56e5, type: 3}
+  - {fileID: 8300000, guid: e63498f15f523f840b2a8c3774f0a9d7, type: 3}
+  countdown: {fileID: 8300000, guid: 0030f62a86d587549ab5871162a27806, type: 3}
+  stoveFrying: {fileID: 8300000, guid: 4e07c32afc2f6c4489b36ac94c0df698, type: 3}
+  stoveBurned: {fileID: 8300000, guid: b8a0f61f80cd2194290db35918e090a7, type: 3}
