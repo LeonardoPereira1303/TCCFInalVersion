@@ -31,6 +31,9 @@ public class GameInput : MonoBehaviour
     private InputDevice assignedDevice;
     private DeviceType currentDeviceType = DeviceType.KeyboardMouse;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pauseSound;
     public void InitializeInput()
     {
         playerInputActions = new PlayerInputActions();
@@ -79,7 +82,13 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pause.performed += ctx =>
         {
             if (ctx.control.device == assignedDevice)
+            {
                 OnPauseAction?.Invoke(this, new InputActionEventArgs { Device = deviceName });
+                if (audioSource != null && pauseSound != null)
+                {
+                    audioSource.PlayOneShot(pauseSound);
+                }
+            }
 
             CheckDeviceChange(ctx.control.device);
         };

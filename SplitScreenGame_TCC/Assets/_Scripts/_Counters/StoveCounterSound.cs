@@ -24,7 +24,11 @@ public class StoveCounterSound : MonoBehaviour
         switch (e.state)
         {
             case StoveCounter.State.Frying:
-                PlayLoop(audioClipRefsSO.chargerSizzle); // som contínuo de fritura
+                PlayLoop(audioClipRefsSO.stoveFrying); // som contínuo de fritura
+                break;
+
+            case StoveCounter.State.Fried:
+                PlayLoop(audioClipRefsSO.stoveFrying); // som contínuo de fritura
                 break;
 
             case StoveCounter.State.Burned:

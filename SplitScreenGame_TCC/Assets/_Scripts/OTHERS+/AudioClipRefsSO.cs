@@ -18,5 +18,7 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip countdown;
     public AudioClip stoveFrying;
     public AudioClip stoveBurned;
+    public AudioClip[] timerHalfway;
+    public AudioClip[] timerFinal;
 
 }

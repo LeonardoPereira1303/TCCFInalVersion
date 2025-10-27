@@ -12722,6 +12722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviceName: Keyboard
+  audioSource: {fileID: 266794480}
+  pauseSound: {fileID: 8300000, guid: df8f85d2e999c2342b135c875c9227f8, type: 3}
 --- !u!4 &1130590164
 Transform:
   m_ObjectHideFlags: 0
@@ -21365,6 +21367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviceName: Gamepad
+  audioSource: {fileID: 266794480}
+  pauseSound: {fileID: 8300000, guid: df8f85d2e999c2342b135c875c9227f8, type: 3}
 --- !u!4 &1822480183
 Transform:
   m_ObjectHideFlags: 0

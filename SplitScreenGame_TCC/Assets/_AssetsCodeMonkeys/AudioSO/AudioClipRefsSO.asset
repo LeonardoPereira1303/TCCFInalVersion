@@ -43,3 +43,7 @@ MonoBehaviour:
   countdown: {fileID: 8300000, guid: 0030f62a86d587549ab5871162a27806, type: 3}
   stoveFrying: {fileID: 8300000, guid: 4e07c32afc2f6c4489b36ac94c0df698, type: 3}
   stoveBurned: {fileID: 8300000, guid: b8a0f61f80cd2194290db35918e090a7, type: 3}
+  timerHalfway:
+  - {fileID: 8300000, guid: 3c01f3af49a21f5459ff4a6b92d15a8f, type: 3}
+  timerFinal:
+  - {fileID: 8300000, guid: 0030f62a86d587549ab5871162a27806, type: 3}

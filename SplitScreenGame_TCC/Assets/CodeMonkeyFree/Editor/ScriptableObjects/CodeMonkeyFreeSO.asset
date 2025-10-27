@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761409682
+  lastShownTimestamp: 1761580475
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761409682
+  checkedLastUpdateTimestamp: 1761580475
   lastQOTDResponse:
     questionId: 235
     questionText: 'What is the Color on the SpriteRenderer after running this code?
@@ -35,7 +35,7 @@ MonoBehaviour:
     answerC: Don't Know
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1761409682
+  lastQotdTimestamp: 1761580475
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
     topText: AWESOME Low Poly Synty Bundle 97% OFF! Don't MISS it!
@@ -43,11 +43,11 @@ MonoBehaviour:
     bottomText: DONT MISS the latest important trends, sign up for my FREE Weekly
       Newsletter!
     bottomLink: gamedevreport
-  lastDynamicHeaderTimestamp: 1761409682
+  lastDynamicHeaderTimestamp: 1761580475
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761409682
+  websiteLatestMessageTimestamp: 1761580475
   websiteLatestVideos:
     videos:
     - youTubeId: wBoRaQQm9WE
@@ -58,4 +58,4 @@ MonoBehaviour:
       title: TOP 10 NEW Games, Made with Unity! (SEPTEMBER 2025)
     - youTubeId: bTQZU_CV9UY
       title: TOP 10 FREE NEW Assets OCTOBER 2025!
-  websiteLatestVideosTimestamp: 1761409682
+  websiteLatestVideosTimestamp: 1761580475

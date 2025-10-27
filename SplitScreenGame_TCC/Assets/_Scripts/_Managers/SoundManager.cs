@@ -121,4 +121,22 @@ public class SoundManager : MonoBehaviour
         if (audioClip == null) return;
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
     }
+
+    public void PlayTimerHalfwaySound(Vector3 position, float volume = 0.2f)
+    {
+        if (audioClipRefsSO.timerHalfway != null && audioClipRefsSO.timerHalfway.Length > 0)
+        {
+            AudioClip clip = audioClipRefsSO.timerHalfway[UnityEngine.Random.Range(0, audioClipRefsSO.timerHalfway.Length)];
+            AudioSource.PlayClipAtPoint(clip, position, volume);
+        }
+    }
+
+    public void PlayTimerFinalSound(Vector3 position, float volume = 0.2f)
+    {
+        if (audioClipRefsSO.timerFinal != null && audioClipRefsSO.timerFinal.Length > 0)
+        {
+            AudioClip clip = audioClipRefsSO.timerFinal[UnityEngine.Random.Range(0, audioClipRefsSO.timerFinal.Length)];
+            AudioSource.PlayClipAtPoint(clip, position, volume);
+        }
+    }
 }
