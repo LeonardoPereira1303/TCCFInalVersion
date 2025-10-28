@@ -14,48 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761580475
+  lastShownTimestamp: 1761678634
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761580475
+  checkedLastUpdateTimestamp: 1761678634
   lastQOTDResponse:
-    questionId: 235
-    questionText: 'What is the Color on the SpriteRenderer after running this code?
-
-      <p>Color
-      myColor = Color.red;</p>
-
-      <p>spriteRenderer.color = myColor;</p>
-
-      <p>myColor
-      = Color.blue;</p>'
-    answerA: Red
-    answerB: Blue
-    answerC: Don't Know
+    questionId: 236
+    questionText: Can Color ever be null?
+    answerA: Yes, always
+    answerB: No
+    answerC: Yes, as Nullable
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1761580475
+  lastQotdTimestamp: 1761678634
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
-    topText: AWESOME Low Poly Synty Bundle 97% OFF! Don't MISS it!
-    topLink: humblebundle
-    bottomText: DONT MISS the latest important trends, sign up for my FREE Weekly
-      Newsletter!
-    bottomLink: gamedevreport
-  lastDynamicHeaderTimestamp: 1761580475
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
+    topText: Stay up to date with the latest in Game Dev straight to your inbox!
+    topLink: gamedevreport
+    bottomText: My 10+ Years of C# Knowledge in 1 Course!
+    bottomLink: csharpcourse
+  lastDynamicHeaderTimestamp: 1761678634
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761580475
+  websiteLatestMessageTimestamp: 1761678634
   websiteLatestVideos:
     videos:
+    - youTubeId: qX5m_EH4Wbo
+      title: How to FAIL with 100k WISHLISTS!
     - youTubeId: wBoRaQQm9WE
       title: TOP 10 NEW Systems and Tools OCTOBER 2025! | Unity Asset Store
     - youTubeId: arIZP7op9WQ
       title: My TECH Stack as a Game Developer, YouTuber and Web Dev!
     - youTubeId: Um-hDTgP0yY
       title: TOP 10 NEW Games, Made with Unity! (SEPTEMBER 2025)
-    - youTubeId: bTQZU_CV9UY
-      title: TOP 10 FREE NEW Assets OCTOBER 2025!
-  websiteLatestVideosTimestamp: 1761580475
+  websiteLatestVideosTimestamp: 1761678634
