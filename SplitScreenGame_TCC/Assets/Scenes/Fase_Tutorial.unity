@@ -9990,60 +9990,59 @@ MonoBehaviour:
   player2: {fileID: 1642486118}
   steps:
   - stepType: 0
-    instruction: Para fazer a BATERIA, pega aquele PARAFUSO!!
+    instruction: Para fazer a BATERIA, pega o PARAFUSO na CAIXA DE PARAFUSOS!!
     highlightTarget: {fileID: 960284390115249312}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 5
-    instruction: "Me mande o PARAFUSO atrav\xE9s da mesa de teleporte!!"
+    instruction: "Me mande o parafuso atrav\xE9s da MESA DE TELETRANSPORTE!!"
     highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: Pega ai.
+    instruction: Pega na SUA MESA DE TELETRANSPORTE
     highlightTarget: {fileID: 357053973}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 1
-    instruction: Mandei!! Agora utiliza sua MESA DE REPARO para criar a bateria.
+    instruction: Utiliza sua MESA DE REPARO para criar a bateria
     highlightTarget: {fileID: 5861285230547151701}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 5
-    instruction: Manda ela de volta!
+    instruction: Preciso da BATERIA DESCARREGADA de volta. Manda pela mesa de teletransporte
     highlightTarget: {fileID: 357053973}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 4
-    instruction: "T\xE1 na m\xE3o, parceiro."
+    instruction: "Pega ela a\xED!!"
     highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 2
-    instruction: "Carrega a bateria nos seus CARREGADORES, mas cuidado para ela n\xE3o
-      estourar!!"
+    instruction: Carregue a BATERIA DESCARREGADA nos CARREGADORES!!
     highlightTarget: {fileID: 5614764894695864592}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: "Coloca a bateria na mesa, n\xE3o deixa cair hein!"
+    instruction: "CARREGADA!! Deixa na MESA HOLOGR\xC1FICA"
     highlightTarget: {fileID: 1984358413}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 6
-    instruction: "Pegue a bandeja magn\xE9tica."
+    instruction: "Pegue uma BANDEJA MAGN\xC9TICA"
     highlightTarget: {fileID: 1141527350307869024}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: Coloque a bateria nela.
+    instruction: "Coloque a BATERIA CARREGADA nessa BANDEJA que est\xE1 em suas m\xE3os."
     highlightTarget: {fileID: 1984358413}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 0
-    instruction: "Manda o PNEU tamb\xE9m"
+    instruction: "N\xC3O SOLTA A BANDEJA!! Vou mandar um PNEU para a entrega"
     highlightTarget: {fileID: 2063029758}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 5
-    instruction: Mandando
+    instruction: Teletransportando o pneu...
     highlightTarget: {fileID: 357053973}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: Pegando...
+    instruction: "Chegou!! Adicionando na minha BANDEJA MAGN\xC9TICA"
     highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 3
-    instruction: Entregando o pedido na BANCADA DE ENTREGA e...
+    instruction: Entregando o pedido na BANCADA DE ENTREGA.
     highlightTarget: {fileID: 4314568464621229337}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   tutorialTextPlayer1: {fileID: 1596934282}
