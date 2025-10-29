@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761678634
+  lastShownTimestamp: 1761767839
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761678634
+  checkedLastUpdateTimestamp: 1761767839
   lastQOTDResponse:
     questionId: 236
     questionText: Can Color ever be null?
@@ -27,26 +27,26 @@ MonoBehaviour:
     answerC: Yes, as Nullable
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1761678634
+  lastQotdTimestamp: 1761767839
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
     topText: Stay up to date with the latest in Game Dev straight to your inbox!
     topLink: gamedevreport
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1761678634
+  lastDynamicHeaderTimestamp: 1761767839
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761678634
+  websiteLatestMessageTimestamp: 1761767839
   websiteLatestVideos:
     videos:
+    - youTubeId: UGhId8Zd3eM
+      title: BEST NEW Visual Assets to INSPIRE YOU! (OCTOBER 2025)
     - youTubeId: qX5m_EH4Wbo
       title: How to FAIL with 100k WISHLISTS!
     - youTubeId: wBoRaQQm9WE
       title: TOP 10 NEW Systems and Tools OCTOBER 2025! | Unity Asset Store
     - youTubeId: arIZP7op9WQ
       title: My TECH Stack as a Game Developer, YouTuber and Web Dev!
-    - youTubeId: Um-hDTgP0yY
-      title: TOP 10 NEW Games, Made with Unity! (SEPTEMBER 2025)
-  websiteLatestVideosTimestamp: 1761678634
+  websiteLatestVideosTimestamp: 1761767839
