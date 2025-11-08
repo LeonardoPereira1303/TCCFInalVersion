@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class TutorialManagerDinamico : MonoBehaviour {
+public class TutorialManagerDinamico : MonoBehaviour
+{
     public static TutorialManagerDinamico Instance { get; private set; }
 
     [SerializeField] private ObjectiveArrowSingle arrowPointer;
@@ -26,8 +27,10 @@ public class TutorialManagerDinamico : MonoBehaviour {
     private HighlightableCounter highlightedCounter;
     private bool tutorialActive = false;
 
-    private void Awake() {
-        if (Instance != null && Instance != this) {
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
             Destroy(gameObject);
             return;
         }
@@ -37,7 +40,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
         SetTutorialActive(false);
     }
 
-    private void Start() {
+    private void Start()
+    {
         // Aguarda o jogo começar
         KitchenGameManager.Instance.OnStateChanged += HandleGameStateChanged;
 
@@ -56,7 +60,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         if (KitchenGameManager.Instance != null)
             KitchenGameManager.Instance.OnStateChanged -= HandleGameStateChanged;
 
@@ -73,7 +78,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
         }
     }
 
-    private void SetTutorialActive(bool active) {
+    private void SetTutorialActive(bool active)
+    {
         tutorialActive = active;
 
         if (tutorialTextPlayer1 != null)
@@ -86,14 +92,20 @@ public class TutorialManagerDinamico : MonoBehaviour {
             highlightedCounter.DisableHighlight();
     }
 
-    private void HandleGameStateChanged(object sender, EventArgs e) {
-        if (KitchenGameManager.Instance.IsGamePlaying()) {
+    private bool tutorialCompleted = false; // <-- nova flag
+
+    private void HandleGameStateChanged(object sender, EventArgs e)
+    {
+        if (KitchenGameManager.Instance.IsGamePlaying() && !tutorialActive && !tutorialCompleted)
+        {
             Debug.Log("[Tutorial] Contagem regressiva finalizada — iniciando tutorial dinâmico.");
             StartTutorial();
         }
     }
 
-    private void StartTutorial() {
+
+    private void StartTutorial()
+    {
         if (tutorialActive) return;
 
         currentStep = 0;
@@ -101,7 +113,8 @@ public class TutorialManagerDinamico : MonoBehaviour {
         ShowStepInstruction();
     }
 
-    private void ShowStepInstruction() {
+    private void ShowStepInstruction()
+    {
         if (!tutorialActive || currentStep >= steps.Count)
             return;
 
@@ -137,15 +150,18 @@ public class TutorialManagerDinamico : MonoBehaviour {
         }
     }
 
-    private void CompleteStep(TutorialStep.StepType type) {
+    private void CompleteStep(TutorialStep.StepType type)
+    {
         if (!tutorialActive || currentStep >= steps.Count)
             return;
 
-        if (steps[currentStep].stepType == type) {
+        if (steps[currentStep].stepType == type)
+        {
             Debug.Log($"[Tutorial] Passo {type} concluído!");
             currentStep++;
 
-            if (currentStep >= steps.Count) {
+            if (currentStep >= steps.Count)
+            {
                 if (tutorialTextPlayer1 != null)
                     tutorialTextPlayer1.text = "Tutorial concluído!";
 
@@ -154,12 +170,14 @@ public class TutorialManagerDinamico : MonoBehaviour {
 
                 HighlightCounter(null);
                 SetTutorialActive(false);
+                tutorialCompleted = true; // <-- marca tutorial como finalizado
                 return;
             }
 
             ShowStepInstruction();
         }
     }
+
 
     // Handlers dos eventos de passos
     private void HandleContainerUsed(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.Container);
@@ -171,5 +189,5 @@ public class TutorialManagerDinamico : MonoBehaviour {
     private void HandlePlatePicked(object sender, EventArgs e) => CompleteStep(TutorialStep.StepType.PickPlate);
 }
 
-        
+
 
