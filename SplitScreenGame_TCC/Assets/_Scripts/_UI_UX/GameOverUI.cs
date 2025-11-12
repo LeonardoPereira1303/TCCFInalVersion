@@ -1,34 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
 
 public class GameOverUI : MonoBehaviour
 {
-   [SerializeField] private TextMeshProUGUI ordersDeliveredText;
+    [SerializeField] private TextMeshProUGUI ordersDeliveredText;
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject defeatPanel;
 
-   private void Start() {
+    private void Start()
+    {
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
 
-        Hide();
+        KitchenGameManager.Instance.OnGameWon += (sender, e) => ShowVictoryPanel();
+        KitchenGameManager.Instance.OnGameLost += (sender, e) => ShowDefeatPanel();
+
+        HideAll();
     }
 
-    private void KitchenGameManager_OnStateChanged(object sender, System.EventArgs e){
-        if(KitchenGameManager.Instance.IsGameOver()){
-            Show();
-
+    private void KitchenGameManager_OnStateChanged(object sender, EventArgs e)
+    {
+        if (KitchenGameManager.Instance.IsGameOver())
+        {
             ordersDeliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipesAmount().ToString();
         }
-        else{
-            Hide();
+        else
+        {
+            HideAll();
         }
     }
-    private void Show(){
-        gameObject.SetActive(true);
+
+    private void ShowVictoryPanel()
+    {
+        HideAll();
+        victoryPanel.SetActive(true);
     }
 
-    private void Hide(){
-        gameObject.SetActive(false);
+    private void ShowDefeatPanel()
+    {
+        HideAll();
+        defeatPanel.SetActive(true);
+    }
+
+    private void HideAll()
+    {
+        victoryPanel.SetActive(false);
+        defeatPanel.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

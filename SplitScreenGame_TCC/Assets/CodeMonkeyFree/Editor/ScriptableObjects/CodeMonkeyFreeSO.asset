@@ -14,39 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761767839
+  lastShownTimestamp: 1762947858
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761767839
+  checkedLastUpdateTimestamp: 1762947858
   lastQOTDResponse:
-    questionId: 236
-    questionText: Can Color ever be null?
-    answerA: Yes, always
-    answerB: No
-    answerC: Yes, as Nullable
+    questionId: 241
+    questionText: 'What is the result of this code:
+
+      <p>int money = 2000000000;
+      // $2 billion</p>
+
+      <p>money += 1000000000; // Adding $1 billion</p>'
+    answerA: money == 3000000000
+    answerB: money == -1294967296
+    answerC: money == 0
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1761767839
+  lastQotdTimestamp: 1762947858
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
-    topText: Stay up to date with the latest in Game Dev straight to your inbox!
-    topLink: gamedevreport
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cmBlackFriday2025.png
+    topText: Get my BLACK FRIDAY Bundle! Available now with Live Chat!
+    topLink: blackfriday
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1761767839
+  lastDynamicHeaderTimestamp: 1762947858
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761767839
+  websiteLatestMessageTimestamp: 1762947858
   websiteLatestVideos:
     videos:
-    - youTubeId: UGhId8Zd3eM
-      title: BEST NEW Visual Assets to INSPIRE YOU! (OCTOBER 2025)
-    - youTubeId: qX5m_EH4Wbo
-      title: How to FAIL with 100k WISHLISTS!
-    - youTubeId: wBoRaQQm9WE
-      title: TOP 10 NEW Systems and Tools OCTOBER 2025! | Unity Asset Store
-    - youTubeId: arIZP7op9WQ
-      title: My TECH Stack as a Game Developer, YouTuber and Web Dev!
-  websiteLatestVideosTimestamp: 1761767839
+    - youTubeId: HSLVMh25YWo
+      title: BLACK FRIDAY Bundle Available NOW! Learn and Play!
+    - youTubeId: Gl0leX7gqVA
+      title: Dispelling the Unity looks bad MYTH!
+    - youTubeId: 0zljaBBiOXo
+      title: Unity turns 20! Get FREE Assets and Make Games!
+    - youTubeId: slMe3sbS_KM
+      title: What is Unity Studio?
+  websiteLatestVideosTimestamp: 1762947858
