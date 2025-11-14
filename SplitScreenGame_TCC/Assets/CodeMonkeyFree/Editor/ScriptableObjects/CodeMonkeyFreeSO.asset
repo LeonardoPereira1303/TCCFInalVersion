@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1762947858
+  lastShownTimestamp: 1763123064
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1762947858
+  checkedLastUpdateTimestamp: 1763123065
   lastQOTDResponse:
     questionId: 241
     questionText: 'What is the result of this code:
@@ -32,26 +32,26 @@ MonoBehaviour:
     answerC: money == 0
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1762947858
+  lastQotdTimestamp: 1763123065
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cmBlackFriday2025.png
     topText: Get my BLACK FRIDAY Bundle! Available now with Live Chat!
     topLink: blackfriday
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1762947858
+  lastDynamicHeaderTimestamp: 1763123065
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1762947858
+  websiteLatestMessageTimestamp: 1763123065
   websiteLatestVideos:
     videos:
+    - youTubeId: zbGWwfEhTzc
+      title: I wrote 3000 lines of code in 48 HOURS!
     - youTubeId: HSLVMh25YWo
       title: BLACK FRIDAY Bundle Available NOW! Learn and Play!
     - youTubeId: Gl0leX7gqVA
       title: Dispelling the Unity looks bad MYTH!
     - youTubeId: 0zljaBBiOXo
       title: Unity turns 20! Get FREE Assets and Make Games!
-    - youTubeId: slMe3sbS_KM
-      title: What is Unity Studio?
-  websiteLatestVideosTimestamp: 1762947858
+  websiteLatestVideosTimestamp: 1763123065
