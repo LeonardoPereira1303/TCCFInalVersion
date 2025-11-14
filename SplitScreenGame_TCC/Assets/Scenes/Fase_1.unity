@@ -4464,7 +4464,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!224 &344221505
 RectTransform:
@@ -19049,7 +19049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 636988759}
-  mainMenu: {fileID: 0}
+  mainMenu: {fileID: 344221500}
   loadingSlider: {fileID: 1143586536}
   fakeLoadTime: 9
 --- !u!4 &1384830831

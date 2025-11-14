@@ -5610,6 +5610,9 @@ MonoBehaviour:
   splitDistance: 12
   splitterColor: {r: 0, g: 0, b: 0, a: 0}
   splitterWidth: 0.1
+  enableCuttingZoom: 1
+  zoomDistance: 6
+  zoomSpeed: 3
 --- !u!45 &447236134
 Skybox:
   m_ObjectHideFlags: 0
