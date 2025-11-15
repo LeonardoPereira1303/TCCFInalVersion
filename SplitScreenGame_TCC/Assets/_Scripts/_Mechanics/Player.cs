@@ -38,6 +38,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         gameInput.OnDashAction += GameInput_OnDashAction;
         gameInput.OnPauseAction += GameInput_OnPauseAction;
 
+        CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut; // <- AQUI
+
         if (trailRenderer != null)
             trailRenderer.enabled = false;
 
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         gameInput.OnInteractAlternateAction -= GameInput_OnInteractAlternateAction;
         gameInput.OnDashAction -= GameInput_OnDashAction;
         gameInput.OnPauseAction -= GameInput_OnPauseAction;
+
+        CuttingCounter.OnAnyCut -= CuttingCounter_OnAnyCut; // <- AQUI
     }
 
     private void Update()
@@ -271,4 +275,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     }
 
     public bool IsWalking() => isWalking;
+
+    private void CuttingCounter_OnAnyCut(object sender, EventArgs e)
+    {
+        // Toca a animação de cortar
+        if (animator != null)
+            animator.SetTrigger("Cut");
+    }
 }
