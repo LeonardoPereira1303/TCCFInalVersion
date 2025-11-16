@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
-    [SerializeField] private string deviceName = "Keyboard"; // "Keyboard" ou "Gamepad"
+    [SerializeField] private string deviceName = "Keyboard";
 
     public class InputActionEventArgs : EventArgs
     {
@@ -29,6 +30,9 @@ public class GameInput : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private InputDevice assignedDevice;
     private DeviceType currentDeviceType = DeviceType.KeyboardMouse;
+
+    // Lista dinâmica para nomes novos de controles reconhecidos como Playstation
+    private static List<string> customPlaystationNames = new List<string>();
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -104,7 +108,6 @@ public class GameInput : MonoBehaviour
             currentDeviceType = newDeviceType;
             OnDeviceChanged?.Invoke(currentDeviceType);
 
-            // Debug opcional
             Debug.Log("Novo dispositivo detectado: " + device.displayName + " -> " + newDeviceType);
         }
     }
@@ -118,21 +121,39 @@ public class GameInput : MonoBehaviour
         {
             string name = gamepad.displayName.ToLower();
 
-            // Detectar Xbox
+            // ---------------------------
+            // XBOX
+            // ---------------------------
             if (name.Contains("xbox"))
                 return DeviceType.GamepadXbox;
 
-            // Detectar controles PlayStation corretamente
+            // ---------------------------
+            // PLAYSTATION (nomes comuns)
+            // ---------------------------
             if (name.Contains("dualshock") ||
                 name.Contains("playstation") ||
-                name.Contains("wireless controller") ||  // Nome comum do DualShock 4
-                name.Contains("sony") ||                 // Segurança extra
-                name.Contains("dualsense"))              // Caso apareça como PS5
+                name.Contains("wireless controller") ||
+                name.Contains("sony") ||
+                name.Contains("dualsense"))
             {
                 return DeviceType.GamepadPlayStation;
             }
 
-            return DeviceType.Unknown;
+            // ---------------------------
+            // CUSTOM: se o controle já foi aprendido
+            // ---------------------------
+            foreach (string customName in customPlaystationNames)
+            {
+                if (name.Contains(customName))
+                    return DeviceType.GamepadPlayStation;
+            }
+
+            // ---------------------------
+            // APRENDIZADO AUTOMÁTICO
+            // ---------------------------
+            Debug.LogWarning("Controle novo detectado e marcado como Playstation: " + name);
+            customPlaystationNames.Add(name);
+            return DeviceType.GamepadPlayStation;
         }
 
         return DeviceType.Unknown;
