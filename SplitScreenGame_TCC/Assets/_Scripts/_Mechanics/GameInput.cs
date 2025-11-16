@@ -24,7 +24,6 @@ public class GameInput : MonoBehaviour
     public event EventHandler<InputActionEventArgs> OnDashAction;
     public event EventHandler<InputActionEventArgs> OnPauseAction;
 
-    // Novo evento de mudança de dispositivo
     public event Action<DeviceType> OnDeviceChanged;
 
     private PlayerInputActions playerInputActions;
@@ -34,11 +33,11 @@ public class GameInput : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pauseSound;
+
     public void InitializeInput()
     {
         playerInputActions = new PlayerInputActions();
 
-        // Detecta e vincula o dispositivo inicial
         if (deviceName.ToLower() == "keyboard")
         {
             assignedDevice = Keyboard.current;
@@ -99,10 +98,14 @@ public class GameInput : MonoBehaviour
         if (device == null) return;
 
         DeviceType newDeviceType = GetDeviceType(device);
+
         if (newDeviceType != currentDeviceType)
         {
             currentDeviceType = newDeviceType;
             OnDeviceChanged?.Invoke(currentDeviceType);
+
+            // Debug opcional
+            Debug.Log("Novo dispositivo detectado: " + device.displayName + " -> " + newDeviceType);
         }
     }
 
@@ -114,10 +117,21 @@ public class GameInput : MonoBehaviour
         if (device is Gamepad gamepad)
         {
             string name = gamepad.displayName.ToLower();
+
+            // Detectar Xbox
             if (name.Contains("xbox"))
                 return DeviceType.GamepadXbox;
-            if (name.Contains("dualshock") || name.Contains("playstation"))
+
+            // Detectar controles PlayStation corretamente
+            if (name.Contains("dualshock") ||
+                name.Contains("playstation") ||
+                name.Contains("wireless controller") ||  // Nome comum do DualShock 4
+                name.Contains("sony") ||                 // Segurança extra
+                name.Contains("dualsense"))              // Caso apareça como PS5
+            {
                 return DeviceType.GamepadPlayStation;
+            }
+
             return DeviceType.Unknown;
         }
 
