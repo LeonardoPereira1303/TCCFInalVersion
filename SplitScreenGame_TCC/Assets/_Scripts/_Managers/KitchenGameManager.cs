@@ -7,6 +7,8 @@ public class KitchenGameManager : MonoBehaviour
     public static KitchenGameManager Instance { get; private set; }
     public event EventHandler OnStateChanged;
     public event EventHandler OnStoryCompleted;
+    public event EventHandler OnGameWon;
+    public event EventHandler OnGameLost;
 
     public bool IsTutorialActive { get; private set; } = true;
 
@@ -28,6 +30,7 @@ public class KitchenGameManager : MonoBehaviour
 
     private bool tutorialCompleted = false;
     private bool phaseTimeStarted = true;
+    private bool isVictory = false;
 
     private void Awake()
     {
@@ -45,17 +48,17 @@ public class KitchenGameManager : MonoBehaviour
                 //Debug.Log($"[KitchenGameManager] Pontos: {ScoreManager.Instance.GetScore()} / {ScoreManager.Instance.GetScoreGoal()}");
             };
 
-            // Ao atingir o objetivo
+            // Ao atingir o objetivo de pedidos
             ScoreManager.Instance.OnGoalReached += (sender, args) =>
             {
-                Debug.Log("[KitchenGameManager] Objetivo de pontos atingido! Encerrando a fase...");
+                Debug.Log("[KitchenGameManager] Objetivo de pontos atingido! Vitória da fase.");
+                isVictory = true;
                 state = State.GameOver;
                 OnStateChanged?.Invoke(this, EventArgs.Empty);
+                OnGameWon?.Invoke(this, EventArgs.Empty);
             };
         }
     }
-
-
 
     private void Update()
     {
@@ -86,11 +89,18 @@ public class KitchenGameManager : MonoBehaviour
             case State.GamePlaying:
                 if (!phaseTimeStarted) return;
                 gamePlayingTimer -= Time.deltaTime;
+
                 if (gamePlayingTimer <= 0f)
                 {
                     gamePlayingTimer = 0f;
                     state = State.GameOver;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
+
+                    if (!isVictory)
+                    {
+                        Debug.Log("[KitchenGameManager] Tempo esgotado! Derrota da fase.");
+                        OnGameLost?.Invoke(this, EventArgs.Empty);
+                    }
                 }
                 break;
         }
@@ -103,7 +113,7 @@ public class KitchenGameManager : MonoBehaviour
     {
         tutorialCompleted = true;
         IsTutorialActive = false;
-        
+
         Debug.Log("[GameManager] História concluída!");
         OnStoryCompleted?.Invoke(this, EventArgs.Empty);
     }
@@ -113,8 +123,10 @@ public class KitchenGameManager : MonoBehaviour
     public float GetCountdownToStartTimer() => countdownToStartTimer;
     public bool IsGameOver() => state == State.GameOver;
     public float GetGamePlayingTimerNormalized() => 1 - (gamePlayingTimer / gamePlayingTimerMax);
+    public bool IsVictory() => isVictory;
 
     public void GoBackToMainMenu() => SceneManager.LoadScene("MainMenu");
+
     public void RestartGame()
     {
         Time.timeScale = 1f;

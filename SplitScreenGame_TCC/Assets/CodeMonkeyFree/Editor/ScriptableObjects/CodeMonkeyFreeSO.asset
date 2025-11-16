@@ -14,39 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1761767839
+  lastShownTimestamp: 1763224696
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1761767839
+  checkedLastUpdateTimestamp: 1763224696
   lastQOTDResponse:
-    questionId: 236
-    questionText: Can Color ever be null?
-    answerA: Yes, always
-    answerB: No
-    answerC: Yes, as Nullable
+    questionId: 242
+    questionText: What is the main difference between the out and ref keywords? (behaviour
+      inside the function)
+    answerA: out doesn't need to be set; ref MUST be set
+    answerB: out MUST be set; ref doesn't need to be set
+    answerC: No difference
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1761767839
+  lastQotdTimestamp: 1763224696
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
-    topText: Stay up to date with the latest in Game Dev straight to your inbox!
-    topLink: gamedevreport
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cmBlackFriday2025.png
+    topText: Get my BLACK FRIDAY Bundle! Available now with Live Chat!
+    topLink: blackfriday
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1761767839
+  lastDynamicHeaderTimestamp: 1763224696
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1761767839
+  websiteLatestMessageTimestamp: 1763224696
   websiteLatestVideos:
     videos:
-    - youTubeId: UGhId8Zd3eM
-      title: BEST NEW Visual Assets to INSPIRE YOU! (OCTOBER 2025)
-    - youTubeId: qX5m_EH4Wbo
-      title: How to FAIL with 100k WISHLISTS!
-    - youTubeId: wBoRaQQm9WE
-      title: TOP 10 NEW Systems and Tools OCTOBER 2025! | Unity Asset Store
-    - youTubeId: arIZP7op9WQ
-      title: My TECH Stack as a Game Developer, YouTuber and Web Dev!
-  websiteLatestVideosTimestamp: 1761767839
+    - youTubeId: qOhIk8Z-jRc
+      title: How to make a Live Chat! (Unity, PHP, SQL, JavaScript)
+    - youTubeId: zbGWwfEhTzc
+      title: I wrote 3000 lines of code in 48 HOURS!
+    - youTubeId: HSLVMh25YWo
+      title: BLACK FRIDAY Bundle Available NOW! Learn and Play!
+    - youTubeId: Gl0leX7gqVA
+      title: Dispelling the Unity looks bad MYTH!
+  websiteLatestVideosTimestamp: 1763224696
