@@ -1,12 +1,22 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI ordersDeliveredText;
+
+    [Space(10)]
+    [Header("Panels")]
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject defeatPanel;
+
+    [Space(10)]
+    [Header("Buttons")]
+    [SerializeField] private Button victoryFirstButton;
+    [SerializeField] private Button defeatFirstButton;
 
     private void Start()
     {
@@ -34,12 +44,18 @@ public class GameOverUI : MonoBehaviour
     {
         HideAll();
         victoryPanel.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(victoryFirstButton.gameObject);
     }
 
     private void ShowDefeatPanel()
     {
         HideAll();
         defeatPanel.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(defeatFirstButton.gameObject);
     }
 
     private void HideAll()
