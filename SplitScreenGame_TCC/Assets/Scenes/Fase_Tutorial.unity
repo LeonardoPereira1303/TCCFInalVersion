@@ -4837,10 +4837,9 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - "Hm... tamb\xE9m eu senti essa energia"
-  - "Mas deve ser que somos a mesma pessoa por\xE9m g\xEAneros e mundos diferentes
-    KKKK"
-  - "Chega de enrola\xE7\xE3o... VAMOS COME\xC7AR!!"
+  - "Bom... n\xE3o temos muito tempo ent\xE3o."
+  - "Vamos focar nos pedidos e trabalhar bem essa comunica\xE7\xE3o"
+  - "Bora come\xE7ar esse trabalho?"
 --- !u!114 &399216049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5093,7 +5092,7 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - "BORA COME\xC7AR!!"
+  - "S\xD3 BORA!!"
 --- !u!114 &410914653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8180,9 +8179,10 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - Prontissima!! Lembre-se...
-  - "COMUNICA\xC7\xC3O \xC9 ESSENCIAL"
-  - EU PRECISO DESSA GRANA PARA CONTINUAR AQUI...
+  - Estou pronta!! Precisamos nos COMUNICAR O TEMPO TODO para dar certo esse seu
+    plano
+  - "Lembre-se... tanto eu quanto voc\xEA precisamos de grana para ficarmos em nossos
+    trabalhos"
 --- !u!114 &689035108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10108,59 +10108,64 @@ MonoBehaviour:
   player2: {fileID: 1642486118}
   steps:
   - stepType: 0
-    instruction: Para fazer a BATERIA, pega o PARAFUSO na CAIXA DE PARAFUSOS!!
+    instruction: Para construir a BATERIA DESCARREGADA, primeiro pega um PARAFUSO
+      na CAIXA DE PARAFUSOS.
     highlightTarget: {fileID: 960284390115249312}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 5
-    instruction: "Me mande o parafuso atrav\xE9s da MESA DE TELETRANSPORTE!!"
+    instruction: Manda para mim o parafuso usando a MESA DE TELETRANSPORTE do seu
+      mundo.
     highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: Pega na SUA MESA DE TELETRANSPORTE
+    instruction: Mandei ae!! Pega ela na sua MESA DE TELETRANSPORTE,
     highlightTarget: {fileID: 357053973}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 1
-    instruction: Utiliza sua MESA DE REPARO para criar a bateria
+    instruction: Agora vou utilizar da minha MESA DE REPARO para criar a BATERIA
+      DESCARREGADA.
     highlightTarget: {fileID: 5861285230547151701}
-    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 5
-    instruction: Preciso da BATERIA DESCARREGADA de volta. Manda pela mesa de teletransporte
+    instruction: "Agora vou mandar de VOLTA a BATERIA DESCARREGADA para voc\xEA carrega-l\xE1."
     highlightTarget: {fileID: 357053973}
+    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+  - stepType: 4
+    instruction: "Peguei ela aqui!! Vou levar ela at\xE9 meu CARREGADOR DE BATERIA!!"
+    highlightTarget: {fileID: 570395347}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
+  - stepType: 2
+    instruction: Colocando a BATERIA DESCARREGADA para carregar no meu CARREGADOR
+      DE BATERIA!!
+    highlightTarget: {fileID: 5614764894695864592}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 4
-    instruction: "Pega ela a\xED!!"
-    highlightTarget: {fileID: 570395347}
-    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
-  - stepType: 2
-    instruction: Carregue a BATERIA DESCARREGADA nos CARREGADORES!!
-    highlightTarget: {fileID: 5614764894695864592}
-    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
-  - stepType: 4
-    instruction: "CARREGADA!! Deixa na MESA HOLOGR\xC1FICA"
+    instruction: "Pronto!! bateria CARREGADA, agora vou deixar na minha bancada aqui
+      ao lado para pegar a BANDEJA MAGN\xC9TICA."
     highlightTarget: {fileID: 1984358413}
-    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 6
-    instruction: "Pegue uma BANDEJA MAGN\xC9TICA"
+    instruction: "Pegando BANDEJA MAGN\xC9TICA aqui..."
     highlightTarget: {fileID: 1141527350307869024}
-    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 4
-    instruction: "Coloque a BATERIA CARREGADA nessa BANDEJA que est\xE1 em suas m\xE3os."
+    instruction: "Vou colocar a BATERIA CARREGADA na minha BANDEJA MAGN\xC9TICA."
     highlightTarget: {fileID: 1984358413}
-    image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
+    image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 0
-    instruction: "N\xC3O SOLTA A BANDEJA!! Vou mandar um PNEU para a entrega"
+    instruction: "ANTES DE ENTREGAR... Me mande um PNEU que deve ter com voc\xEA."
     highlightTarget: {fileID: 2063029758}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 5
-    instruction: Teletransportando o pneu...
+    instruction: "TELETRANSPORTANDO o PNEU para voc\xEA."
     highlightTarget: {fileID: 357053973}
     image: {fileID: 21300000, guid: 5783679b17960914d9e898ed97d952c8, type: 3}
   - stepType: 4
-    instruction: "Chegou!! Adicionando na minha BANDEJA MAGN\xC9TICA"
+    instruction: "Recebido!! Vou adicionar na minha BANDEJA MAGN\xC9TICA"
     highlightTarget: {fileID: 570395347}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   - stepType: 3
-    instruction: Entregando o pedido na BANCADA DE ENTREGA.
+    instruction: "PEDIDO PRONTO!! Agora s\xF3 entregar na BANCADA DE ENTREGA!!"
     highlightTarget: {fileID: 4314568464621229337}
     image: {fileID: 21300000, guid: 88926e71fa79239489e9bfb7a2d36af3, type: 3}
   tutorialTextPlayer1: {fileID: 1596934282}
@@ -10812,8 +10817,8 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - Consigo sim!!
-  - Pronta para trabalhar em equipe?
+  - Opa, eae de boa? To conseguindo ouvir sim.
+  - "T\xE1 pronta para me ajudar com esse servi\xE7o?"
 --- !u!1 &931846754
 GameObject:
   m_ObjectHideFlags: 0
@@ -19673,10 +19678,10 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - Eu vou te ajudar a pegar essa grana!! Relaxa garota
-  - "E pode deixar... COMUNICA\xC7\xC3O \xE9 meu nome do meio KKKK"
-  - Eu sinto uma energia boa e estou sentindo que vamos conseguir notas altas com
-    esse nosso trabalho!!
+  - "Relaxa garota!! Comunica\xE7\xE3o n\xE3o estar\xE1 em falta."
+  - "Em rela\xE7\xE3o a grana... a gente precisa s\xF3 atender o m\xE1ximo de clientes
+    que podemos."
+  - "Hoje n\xF3s temos 2 horas e 30 minutos antes de encerrar o dia."
 --- !u!114 &1589151501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25120,8 +25125,8 @@ MonoBehaviour:
   timeBtwChars: 0.07
   timeBtwWords: 0.7
   storyTexts:
-  - "Al\xF4? River..."
-  - Consegue me ouvir?
+  - "Al\xF4? River... Consegue me ouvir?"
+  - "Espero que voc\xEA esteja conseguindo me escutar."
 --- !u!1001 &2114356246
 PrefabInstance:
   m_ObjectHideFlags: 0
