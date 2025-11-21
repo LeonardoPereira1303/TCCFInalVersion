@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1763600070
+  lastShownTimestamp: 1763689133
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1763600070
+  checkedLastUpdateTimestamp: 1763689133
   lastQOTDResponse:
     questionId: 243
     questionText: 'What are the minimum requirements (array size) to draw a Mesh
@@ -37,18 +37,18 @@ MonoBehaviour:
     answerC: 6 vertices, 3 uvs, 4 triangles
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1763600070
+  lastQotdTimestamp: 1763689133
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cmBlackFriday2025.png
     topText: Get my BLACK FRIDAY Bundle! Available now with Live Chat!
     topLink: blackfriday
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1763600070
+  lastDynamicHeaderTimestamp: 1763689133
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1763600070
+  websiteLatestMessageTimestamp: 1763689133
   websiteLatestVideos:
     videos:
     - youTubeId: vB0ApsVWET8
@@ -59,4 +59,4 @@ MonoBehaviour:
       title: TOP 10 FREE NEW Assets NOVEMBER 2025!
     - youTubeId: qOhIk8Z-jRc
       title: How to make a Live Chat! (Unity, PHP, SQL, JavaScript)
-  websiteLatestVideosTimestamp: 1763600070
+  websiteLatestVideosTimestamp: 1763689133
