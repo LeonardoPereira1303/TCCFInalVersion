@@ -42,6 +42,7 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private int waitingRecipesMax = 4;
     [SerializeField] private float recipeMaxTime = 15f;
     [SerializeField] private int penaltyOnExpire = -5;
+    [SerializeField] private Animator recipeAlertAnimator;
 
     private List<WaitingRecipe> waitingRecipeList = new List<WaitingRecipe>();
     private float spawnRecipeTimer;
@@ -57,6 +58,12 @@ public class DeliveryManager : MonoBehaviour
 
     private void Start()
     {
+        OnRecipeSpawned += (sender, e) =>
+        {
+            Debug.Log("TRIGGER DISPARADO: AlertNewRecipe");
+            recipeAlertAnimator.SetTrigger("AlertNewRecipe");
+        };
+
         SetPhase(currentPhaseName);
     }
 
@@ -111,10 +118,19 @@ public class DeliveryManager : MonoBehaviour
         // ⏱️ Atualiza timers dos pedidos
         for (int i = waitingRecipeList.Count - 1; i >= 0; i--)
         {
-            waitingRecipeList[i].timer -= Time.deltaTime;
-            if (waitingRecipeList[i].timer <= 0f)
+            WaitingRecipe wr = waitingRecipeList[i];
+            wr.timer -= Time.deltaTime;
+
+            // 🔔 ALERTA DE TEMPO BAIXO
+            if (wr.timer <= 5f && wr.timer + Time.deltaTime > 5f)
             {
-                RecipeSO expiredRecipe = waitingRecipeList[i].recipeSO;
+                // Toca só UMA VEZ por pedido
+                recipeAlertAnimator.SetTrigger("AlertLosingRecipe");
+            }
+
+            if (wr.timer <= 0f)
+            {
+                RecipeSO expiredRecipe = wr.recipeSO;
                 waitingRecipeList.RemoveAt(i);
 
                 ScoreManager.Instance?.AddScore(penaltyOnExpire);
@@ -199,11 +215,14 @@ public class DeliveryManager : MonoBehaviour
                             RecipeSO recipe = currentPhase.availableRecipes[UnityEngine.Random.Range(0, currentPhase.availableRecipes.Count)];
                             waitingRecipeList.Add(new WaitingRecipe(recipe, recipeMaxTime));
                             OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+
                             Debug.Log($"[DeliveryManager] Segundo pedido gerado imediatamente: {recipe.recipeName}");
                         }
+
                         secondRecipeSpawned = true;
                         spawnRecipeTimer = currentPhase.spawnInterval;
                     }
+
 
                     return;
                 }

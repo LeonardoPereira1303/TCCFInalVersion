@@ -10,6 +10,8 @@ public class DeliveryManagerSingleUI : MonoBehaviour
     [SerializeField] private Transform iconContainer;
     [SerializeField] private Transform iconTemplate;
     [SerializeField] private Image timerBar;
+    [SerializeField] private Animator alertAnimator;
+
 
     private DeliveryManager.WaitingRecipe currentRecipe;
 
@@ -37,6 +39,8 @@ public class DeliveryManagerSingleUI : MonoBehaviour
         }
     }
 
+    private bool playedLowTimerAlert = false;
+
     private void Update()
     {
         if (currentRecipe != null)
@@ -46,7 +50,21 @@ public class DeliveryManagerSingleUI : MonoBehaviour
 
             if (normalized > 0.5f) timerBar.color = Color.green;
             else if (normalized > 0.25f) timerBar.color = Color.yellow;
-            else timerBar.color = Color.red;
+            else
+            {
+                timerBar.color = Color.red;
+
+                if (!playedLowTimerAlert)
+                {
+                    playedLowTimerAlert = true;
+                    alertAnimator.SetTrigger("AlertLosingRecipe");
+                }
+            }
         }
+    }
+    public void PlayNewRecipeAlert()
+    {
+        if (alertAnimator != null)
+            alertAnimator.SetTrigger("AlertNewRecipe");
     }
 }
