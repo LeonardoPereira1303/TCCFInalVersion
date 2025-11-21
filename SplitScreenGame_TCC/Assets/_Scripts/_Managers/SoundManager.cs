@@ -156,6 +156,12 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayPauseSound()
+    {
+        if (audioClipRefsSO.pause != null)
+            AudioSource.PlayClipAtPoint(audioClipRefsSO.pause, Vector3.zero, volume);
+    }
+
     public void ChangeVolume()
     {
         volume += .1f;

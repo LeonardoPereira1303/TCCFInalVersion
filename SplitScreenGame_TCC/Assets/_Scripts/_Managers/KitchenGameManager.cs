@@ -141,6 +141,7 @@ public class KitchenGameManager : MonoBehaviour
 
     private void PauseGame()
     {
+        SoundManager.Instance.PlayPauseSound();
         previousState = state;
         state = State.Paused;
         Time.timeScale = 0f;

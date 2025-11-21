@@ -20,5 +20,6 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip stoveBurned;
     public AudioClip[] timerHalfway;
     public AudioClip[] timerFinal;
-    public AudioClip[] orderSpawn; 
+    public AudioClip[] orderSpawn;
+    public AudioClip pause;
 }

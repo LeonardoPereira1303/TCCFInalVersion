@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0030f62a86d587549ab5871162a27806, type: 3}
   orderSpawn:
   - {fileID: 8300000, guid: d67bad2d49b1842499d45ca8e847ec85, type: 3}
+  pause: {fileID: 8300000, guid: df8f85d2e999c2342b135c875c9227f8, type: 3}
