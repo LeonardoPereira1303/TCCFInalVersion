@@ -23109,7 +23109,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 317772503}
         m_TargetAssemblyTypeName: KitchenGameManager, Assembly-CSharp
         m_MethodName: GoBackToMainMenu
         m_Mode: 1
