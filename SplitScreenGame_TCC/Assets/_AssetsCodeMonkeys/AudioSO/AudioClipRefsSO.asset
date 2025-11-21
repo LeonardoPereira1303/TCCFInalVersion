@@ -47,3 +47,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3c01f3af49a21f5459ff4a6b92d15a8f, type: 3}
   timerFinal:
   - {fileID: 8300000, guid: 0030f62a86d587549ab5871162a27806, type: 3}
+  orderSpawn:
+  - {fileID: 8300000, guid: d67bad2d49b1842499d45ca8e847ec85, type: 3}

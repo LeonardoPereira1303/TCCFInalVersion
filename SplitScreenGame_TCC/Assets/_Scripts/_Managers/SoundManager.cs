@@ -29,7 +29,8 @@ public class SoundManager : MonoBehaviour
         CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
         BaseCounter.OnAnyObjectPlacedHere += BaseCounter_OnAnyObjectPlacedHere;
         TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;
-        StoveCounter.OnAnyStoveStateChanged += StoveCounter_OnAnyStoveStateChanged; // 🔥 novo evento
+        StoveCounter.OnAnyStoveStateChanged += StoveCounter_OnAnyStoveStateChanged;
+        DeliveryManager.Instance.OnRecipeSpawned += DeliveryManager_OnRecipeSpawned;
 
         // Localiza o Player na cena
         Player player = FindObjectOfType<Player>();
@@ -81,7 +82,15 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.deliverySuccess, deliveryCounter.transform.position);
     }
 
-    // 🔥 Novo: som do fogão conforme estado
+    private void DeliveryManager_OnRecipeSpawned(object sender, EventArgs e)
+    {
+        // posição do DeliveryCounter → onde a ordem aparece visualmente
+        DeliveryCounter deliveryCounter = DeliveryCounter.Instance;
+
+        // se quiser tocar no Player em vez do DeliveryCounter, é só trocar
+        PlaySound(audioClipRefsSO.orderSpawn, deliveryCounter.transform.position);
+    }
+
     private void StoveCounter_OnAnyStoveStateChanged(object sender, StoveCounter.OnAnyStoveStateChangedEventArgs e)
     {
         switch (e.state)
